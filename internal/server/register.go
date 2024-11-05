@@ -27,6 +27,11 @@ func (s *Server) SignUp(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if checkExistUserName := s.CheckExistUserName(req.Username); checkExistUserName {
+		http.Error(w, "Username already exists", http.StatusBadRequest)
+		return
+	}
+
 	// Hash the password
 	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
 	if err != nil {
@@ -64,4 +69,12 @@ func (s *Server) SignUp(w http.ResponseWriter, r *http.Request) {
 		"access_token":  accessToken,
 		"refresh_token": refreshToken,
 	})
+}
+
+func (s *Server) CheckExistUserName(username string) bool {
+	var user domains.User
+	if err := s.DB.Where("user_name = ?", username).First(&user).Error; err != nil {
+		return false
+	}
+	return true
 }
