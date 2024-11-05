@@ -1,10 +1,4 @@
-body {
-    display: flex;
-    justify-content: center;
-    background-color: #f8f9fa;
-}
-
-.login-container {
+.signup-container {
     max-width: 400px;
     margin: 40px auto;
     padding: 40px 40px;
@@ -15,7 +9,7 @@ body {
     margin-top: 5%;
 }
 
-.login-container form {
+.signup-container form {
     display: flex;
     flex-direction: column;
 
@@ -50,33 +44,32 @@ body {
     }
 }
 
-.login-banner-container {
+.signup-banner-container {
     width: 100%;
     padding: 10px 0;
 }
 
-.login-banner {
+.signup-banner {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.login-logo-container  {
+.signup-logo-container {
     display: flex;
     align-items: center;
 }
 
-.login-logo-container img {
+.signup-logo-container img {
     height: 50px;
     margin-right: 10px;
 }
 
-.login-logo-container .logo-text {
+.signup-logo-container .logo-text {
     font-size: 24px;
     font-weight: bold;
     color: #333;
 }
-
 
 footer {
     text-align: center;

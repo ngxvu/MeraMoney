@@ -1,32 +1,30 @@
-// FILE: Login.jsx
+// FILE: SignUp.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import "../../features/Login/styles.scss";
+import "../../features/SignUp/styles.scss";
 import logo from "../../assets/images/finalcs50-meramoney.png";
 
-function Login({ onLogin }) {
+function SignUp({ onSignUp }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
-  const handleLoginSuccess = (data) => {
-    const { accessToken, refreshToken } = data;
-
-    localStorage.setItem("accessToken", accessToken);
-    localStorage.setItem("refreshToken", refreshToken);
-
-    onLogin(data);
-    setSuccess("Login successful!");
-  };
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setError("");
     setSuccess("");
 
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
     try {
-      const response = await fetch("http://143.198.193.9:8989/login", {
+      const response = await fetch("http://143.198.193.9:8989/sign-up", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,33 +36,39 @@ function Login({ onLogin }) {
       });
 
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        const errorData = await response.text();
+        throw new Error(errorData || "Network response was not ok");
       }
+
       const data = await response.json();
-      handleLoginSuccess(data);
+      onSignUp(data);
+      setSuccess("Sign-up successful! Redirecting to login page...");
+      setTimeout(() => {
+        navigate("/login");
+      }, 1000);
     } catch (error) {
-      setError("Login failed. Please check your username and password.");
+      setError(error.message || "Sign-up failed. Please try again.");
     }
   };
 
   return (
     <>
-      <div className="login-banner-container">
-        <header className="login-banner">
-          <div className="login-logo-container">
+      <div className="signup-banner-container">
+        <header className="signup-banner">
+          <div className="signup-logo-container">
             <img src={logo} alt="Logo" />
             <span className="logo-text">Meramoney</span>
           </div>
         </header>
       </div>
-      <div className="login-container">
-        <h2>Login to Meramoney</h2>
+      <div className="signup-container">
+        <h2>Sign Up</h2>
         <p>
-          Don't have an account yet? <a href="/signup">Sign up here!</a>
+          Already have an account? <a href="/login">Login here</a>
         </p>
+        {error && <p className="error">{error}</p>}{" "}
+        {success && <p className="success">{success}</p>}{" "}
         <form onSubmit={handleSubmit}>
-          {error && <div className="error-message">{error}</div>}
-          {success && <div className="success-message">{success}</div>}
           <label htmlFor="username">Username:</label>
           <input
             type="text"
@@ -83,7 +87,16 @@ function Login({ onLogin }) {
             placeholder="Password"
             required
           />
-          <button type="submit">Login</button>
+          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            placeholder="Confirm Password"
+            required
+          />
+          <button type="submit">Sign Up</button>
         </form>
       </div>
       <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
@@ -91,8 +104,8 @@ function Login({ onLogin }) {
   );
 }
 
-Login.propTypes = {
-  onLogin: PropTypes.func.isRequired,
+SignUp.propTypes = {
+  onSignUp: PropTypes.func.isRequired,
 };
 
-export default Login;
+export default SignUp;
