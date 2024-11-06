@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import "../../features/SignUp/styles.scss";
+import "../../features/SignUp/SignUp.scss";
 import logo from "../../assets/images/finalcs50-meramoney.png";
 
 function SignUp({ onSignUp }) {

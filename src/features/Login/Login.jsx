@@ -1,7 +1,7 @@
 // FILE: Login.jsx
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import "../../features/Login/styles.scss";
+import "../../features/Login/Login.scss";
 import logo from "../../assets/images/finalcs50-meramoney.png";
 
 function Login({ onLogin }) {
