@@ -22,7 +22,7 @@ func init() {
 // Claims struct to the JWT claims
 type Claims struct {
 	ID       int    `json:"id"`
-	Username string `json:"username"`
+	Username string `json:"user_name"`
 	jwt.StandardClaims
 }
 

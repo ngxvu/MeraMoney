@@ -11,13 +11,13 @@ type ProfileResponse struct {
 }
 
 func (s *Server) GetProfile(w http.ResponseWriter, r *http.Request) {
-	username, ok := r.Context().Value("user").(string)
+	id, ok := r.Context().Value("id").(int)
 	if !ok {
 		http.Error(w, "Failed to retrieve user information", http.StatusInternalServerError)
 		return
 	}
 
-	profile, err := s.Profile(username)
+	profile, err := s.Profile(id)
 	if err != nil {
 		http.Error(w, "Failed to retrieve user profile", http.StatusInternalServerError)
 		return
@@ -27,7 +27,7 @@ func (s *Server) GetProfile(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *Server) UpdateProfile(w http.ResponseWriter, r *http.Request) {
-	username, ok := r.Context().Value("user").(string)
+	id, ok := r.Context().Value("id").(int)
 	if !ok {
 		http.Error(w, "Failed to retrieve user information", http.StatusInternalServerError)
 		return
@@ -39,12 +39,20 @@ func (s *Server) UpdateProfile(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if err := s.DB.Model(&domains.User{}).Where("user_name = ?", username).Updates(updatedUser).Error; err != nil {
+	// Check if the username already exists and belongs to a different user
+	var existingUser domains.User
+	if err := s.DB.Where("user_name = ? AND id != ?", updatedUser.UserName, id).First(&existingUser).Error; err == nil {
+		http.Error(w, "Username already exists", http.StatusBadRequest)
+		return
+	}
+
+	// Update the user profile
+	if err := s.DB.Model(&domains.User{}).Where("id = ?", id).Updates(updatedUser).Error; err != nil {
 		http.Error(w, "Failed to update user profile", http.StatusInternalServerError)
 		return
 	}
 
-	profile, err := s.Profile(updatedUser.UserName)
+	profile, err := s.Profile(id)
 	if err != nil {
 		http.Error(w, "Failed to retrieve user profile", http.StatusInternalServerError)
 		return
@@ -53,10 +61,10 @@ func (s *Server) UpdateProfile(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(profile)
 }
 
-func (s *Server) Profile(username string) (*ProfileResponse, error) {
+func (s *Server) Profile(id int) (*ProfileResponse, error) {
 	var user domains.User
 
-	if err := s.DB.Where("user_name = ?", username).First(&user).Error; err != nil {
+	if err := s.DB.Where("id = ?", id).First(&user).Error; err != nil {
 		return nil, err
 	}
 
