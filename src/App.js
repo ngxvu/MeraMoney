@@ -6,6 +6,7 @@ import SignUp from './features/SignUp/SignUp';
 import Dashboard from './features/Dashboard/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './features/Profile/Profile';
+import Settings from './features/Settings/Settings';
 
 function App() {
     const handleLogin = () => {
@@ -28,6 +29,11 @@ function App() {
                 <Route path="/profile" element={
                     <ProtectedRoute>
                         <Profile/>
+                    </ProtectedRoute>
+                }/>
+                <Route path={"/settings"} element={
+                    <ProtectedRoute>
+                        <Settings/>
                     </ProtectedRoute>
                 }/>
             </Routes>

@@ -1,6 +1,6 @@
 // frontend/src/components/Navbar/Navbar.jsx
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./Navbar.scss";
 
 function Navbar() {
@@ -16,8 +16,8 @@ function Navbar() {
     return (
         <nav className="navbar">
             <div className="navbar-links">
-                <a href="/profile">Profile</a>
-                <a href="/settings">Settings</a>
+                <a href="/" onClick={(e) => { e.preventDefault(); navigate('/dashboard'); }}>Home</a>
+                <a href="/settings" onClick={(e) => { e.preventDefault(); navigate('/settings'); }}>Settings</a>
                 <a href="/login" onClick={handleLogout}>Logout</a>
             </div>
         </nav>
