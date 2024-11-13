@@ -1,35 +1,37 @@
-// FILE: Login.jsx
-import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../../features/Login/Login.scss";
 import logo from "../../assets/images/finalcs50-meramoney.png";
 
-function Login({onLogin}) {
+function Login({ onLogin }) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const navigate = useNavigate();
-    
+
     const handleLoginSuccess = (data) => {
-        const {accessToken, refreshToken} = data;
-        
-        localStorage.setItem("accessToken", accessToken);
-        localStorage.setItem("refreshToken", refreshToken);
-        
+        const { access_token, refresh_token } = data;
+
+        console.log('Access Token:', access_token); // Debugging
+        console.log('Refresh Token:', refresh_token); // Debugging
+
+        localStorage.setItem("accessToken", access_token);
+        localStorage.setItem("refreshToken", refresh_token);
+
         onLogin(data);
         setSuccess("Login successful!");
         setTimeout(() => {
             navigate("/dashboard");
-        }, 1000);
+        }, 100);
     };
-    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setError("");
         setSuccess("");
-        
+
         try {
             const response = await fetch("http://143.198.193.9:8989/login", {
                 method: "POST",
@@ -41,7 +43,7 @@ function Login({onLogin}) {
                     password: password,
                 }),
             });
-            
+
             if (!response.ok) {
                 throw new Error("Network response was not ok");
             }
@@ -51,13 +53,13 @@ function Login({onLogin}) {
             setError("Login failed. Please check your username and password.");
         }
     };
-    
+
     return (
         <>
             <div className="login-banner-container">
                 <header className="login-banner">
                     <div className="login-logo-container">
-                        <img src={logo} alt="Logo"/>
+                        <img src={logo} alt="Logo" />
                         <span className="logo-text">Meramoney</span>
                     </div>
                 </header>
