@@ -1,0 +1,82 @@
+.settings-banner-container {
+  width: 100%;
+  padding: 10px 0;
+}
+
+.settings-banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.settings-logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.settings-logo-container img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.settings-logo-container .logo-text {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+
+
+.settings-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 40px 40px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  margin-top: 5%;
+}
+
+.settings-container form {
+  display: flex;
+  flex-direction: column;
+
+  div {
+    margin-bottom: 15px;
+  }
+
+  label {
+    margin-bottom: 5px;
+  }
+
+  input, button {
+    width: 300px;
+    padding: 15px;
+    margin: 0 auto 15px auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+
+  button {
+    margin-top: 30px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #0056b3;
+    }
+  }
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #777;
+  background-color: transparent; // Ensure the footer background is transparent
+}

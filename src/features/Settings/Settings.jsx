@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from "../../assets/images/finalcs50-meramoney.png";
+import './Settings.scss';
 
 function Settings() {
     const [profile, setProfile] = useState(null);
@@ -8,32 +10,35 @@ function Settings() {
     const [success, setSuccess] = useState('');
     const navigate = useNavigate();
 
-    useEffect(() => {
+    const fetchProfile = async () => {
         const accessToken = localStorage.getItem('accessToken');
         if (!accessToken) {
             navigate('/login');
             return;
         }
 
-        fetch('http://143.198.193.9:8989/profile', {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        })
-        .then(response => {
+        try {
+            const response = await fetch('http://143.198.193.9:8989/profile', {
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${accessToken}`
+                }
+            });
+
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-            return response.json();
-        })
-        .then(data => {
+
+            const data = await response.json();
             setProfile(data);
             setUserName(data.user_name);
-        })
-        .catch(error => {
+        } catch (error) {
             console.error('There was an error fetching the profile!', error);
-        });
+        }
+    };
+
+    useEffect(() => {
+        fetchProfile();
     }, [navigate]);
 
     const handleSubmit = async (event) => {
@@ -58,12 +63,14 @@ function Settings() {
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const errorData = await response.text();
+                throw new Error(errorData || 'Network response was not ok');
             }
 
             setSuccess('Profile updated successfully!');
+            await fetchProfile(); // Refresh profile data
         } catch (error) {
-            setError('There was an error updating the profile.');
+            setError(error.message || 'There was an error updating the profile.');
         }
     };
 
@@ -72,30 +79,41 @@ function Settings() {
     }
 
     return (
-        <div>
-            <h1>Settings</h1>
-            <div>
-                <h2>View Profile</h2>
-                <p>User Name: {profile.user_name}</p>
+        <>
+            <div className="settings-banner-container">
+                <header className="settings-banner">
+                    <div className="settings-logo-container">
+                        <img src={logo} alt="Logo"/>
+                        <span className="logo-text">Meramoney</span>
+                    </div>
+                </header>
             </div>
-            <div>
-                <h2>Update Profile</h2>
-                <form onSubmit={handleSubmit}>
-                    {error && <div className="error-message">{error}</div>}
-                    {success && <div className="success-message">{success}</div>}
-                    <label htmlFor="userName">User Name:</label>
-                    <input
-                        type="text"
-                        id="userName"
-                        value={userName}
-                        onChange={(e) => setUserName(e.target.value)}
-                        placeholder="User Name"
-                        required
-                    />
-                    <button type="submit">Update</button>
-                </form>
+            <div className="settings-content">
+                <div className="settings-container">
+                    <div className="profile-info">
+                        <h2>Profile Information</h2>
+                        <p>User Name: {profile.user_name}</p>
+                    </div>
+                    <h2>Update Profile</h2>
+                    <form onSubmit={handleSubmit}>
+                        {error && <div className="error-message">{error}</div>}
+                        {success && <div className="success-message">{success}</div>}
+                        <label htmlFor="userName">User Name:</label>
+                        <input
+                            type="text"
+                            id="userName"
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)}
+                            placeholder="User Name"
+                            required
+                        />
+                        <button type="submit">Update</button>
+                    </form>
+                    <button className="back-button" onClick={() => navigate('/dashboard')}>Back to Dashboard</button>
+                </div>
             </div>
-        </div>
+            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+        </>
     );
 }
 

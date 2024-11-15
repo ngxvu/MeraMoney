@@ -1,3 +1,30 @@
+.signup-banner-container {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.signup-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.signup-logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.signup-logo-container img {
+    height: 50px;
+    margin-right: 10px;
+}
+
+.signup-logo-container .logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
 .signup-container {
     max-width: 400px;
     margin: 40px auto;
@@ -44,32 +71,6 @@
     }
 }
 
-.signup-banner-container {
-    width: 100%;
-    padding: 10px 0;
-}
-
-.signup-banner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.signup-logo-container {
-    display: flex;
-    align-items: center;
-}
-
-.signup-logo-container img {
-    height: 50px;
-    margin-right: 10px;
-}
-
-.signup-logo-container .logo-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-}
 
 footer {
     text-align: center;

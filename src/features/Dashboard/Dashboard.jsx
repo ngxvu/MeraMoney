@@ -1,8 +1,9 @@
+// Update the Dashboard component
 import React from "react";
 import "./Dashboard.scss";
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import Navbar from "../../components/Navbar/Navbar";
-import {MyDatePicker} from "../../components/DayPicker/DayPicker";
+import { MyDatePicker } from "../../components/DayPicker/DayPicker";
 
 function Dashboard() {
     return (
@@ -13,15 +14,15 @@ function Dashboard() {
                         <img src={logo} alt="Logo"/>
                         <span className="logo-text">Meramoney</span>
                     </div>
+                    <Navbar /> {/* Move Navbar here */}
                 </header>
             </div>
             <div className="dashboard">
-                <Navbar/>
                 <div className="dashboard-content">
                     <div className="main-content">
                         <h2>Welcome to the Dashboard</h2>
                         <p>This is your main content area.</p>
-                        <MyDatePicker/>
+                        <MyDatePicker />
                         <div className="summary">
                             <h3>Summary</h3>
                             <p>Total Income: $0.00</p>
