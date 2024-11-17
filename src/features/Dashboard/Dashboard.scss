@@ -26,21 +26,13 @@
   color: #333;
 }
 
-footer {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-  color: #777;
-  background-color: transparent;
-}
-
-// Add styles for the summary section in Dashboard.scss
-
 .summary {
   margin-top: 2rem;
   padding: 1rem;
   background-color: #f9f9f9;
-  border: 1px solid #ddd;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
 
@@ -50,4 +42,12 @@ footer {
 
 .summary p {
   margin: 0.5rem 0;
+}
+
+footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #777;
+  background-color: transparent;
 }

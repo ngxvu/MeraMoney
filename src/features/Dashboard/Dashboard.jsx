@@ -106,8 +106,6 @@ function Dashboard() {
             <div className="dashboard">
                 <div className="dashboard-content">
                     <div className="main-content">
-                        <h2>Welcome to the Dashboard</h2>
-                        <p>This is your main content area.</p>
                         <MyDatePicker onDateRangeChange={setDateRange} />
                         <div className="summary">
                             <h3>Summary</h3>

@@ -1,6 +1,7 @@
 // src/components/DayPicker/DayPicker.jsx
 import React, { useState, useEffect } from "react";
 import { DayPicker } from "react-day-picker";
+import { FaCalendarAlt } from "react-icons/fa"; // Import calendar icon
 import "react-day-picker/style.css";
 
 export function MyDatePicker({ onDateRangeChange }) {
@@ -29,7 +30,7 @@ export function MyDatePicker({ onDateRangeChange }) {
     return (
         <div>
             <button onClick={() => setPickerVisible(!isPickerVisible)}>
-                {isPickerVisible ? "Hide Date Picker" : "Show Date Picker"}
+                <FaCalendarAlt /> {/* Calendar icon */}
             </button>
             {isPickerVisible && (
                 <div>
