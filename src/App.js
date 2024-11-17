@@ -8,6 +8,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './features/Profile/Profile';
 import Settings from './features/Settings/Settings';
 import AddTransactions from './features/AddTransactions/AddTransactions';
+import CategoryList from './features/CategoryList/CategoryList';
 
 function App() {
     const handleLogin = () => {
@@ -40,6 +41,11 @@ function App() {
                 <Route path={"/add-transactions"} element={
                     <ProtectedRoute>
                         <AddTransactions/>
+                    </ProtectedRoute>
+                }/>
+                <Route path={"/list-categories"} element={
+                    <ProtectedRoute>
+                        <CategoryList/>
                     </ProtectedRoute>
                 }/>
             </Routes>
