@@ -1,19 +1,21 @@
 // src/features/Dashboard/Dashboard.jsx
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Dashboard.scss";
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import Navbar from "../../components/Navbar/Navbar";
 import { MyDatePicker } from "../../components/DayPicker/DayPicker";
+import { FaPlus } from "react-icons/fa";
 
 function Dashboard() {
     const [netBalance, setNetBalance] = useState(0);
     const [totalIncome, setTotalIncome] = useState(0);
     const [totalExpense, setTotalExpense] = useState(0);
     const [dateRange, setDateRange] = useState({ from: undefined, to: undefined });
+    const navigate = useNavigate();
 
     useEffect(() => {
         if (dateRange.from && dateRange.to) {
-            console.log("Date Range in Dashboard:", dateRange); // Debug log
             const fetchNetBalance = async () => {
                 const start = dateRange.from;
                 const end = dateRange.to;
@@ -31,8 +33,7 @@ function Dashboard() {
                     }
 
                     const data = await response.json();
-                    console.log("API Response Data:", data); // Debug log
-                    setNetBalance(data.balance); // Update to use data.balance
+                    setNetBalance(data.balance);
                 } catch (error) {
                     console.error('Error fetching net balance:', error);
                 }
@@ -55,8 +56,7 @@ function Dashboard() {
                     }
 
                     const data = await response.json();
-                    console.log("API Response Data (Income):", data); // Debug log
-                    setTotalIncome(data.total_income); // Update to use data.totalIncome
+                    setTotalIncome(data.total_income);
                 } catch (error) {
                     console.error('Error fetching total income:', error);
                 }
@@ -79,8 +79,7 @@ function Dashboard() {
                     }
 
                     const data = await response.json();
-                    console.log("API Response Data (Expense):", data); // Debug log
-                    setTotalExpense(data.total_expense); // Update to use data.totalExpense
+                    setTotalExpense(data.total_expense);
                 } catch (error) {
                     console.error('Error fetching total expense:', error);
                 }
@@ -91,6 +90,10 @@ function Dashboard() {
             fetchTotalExpense();
         }
     }, [dateRange]);
+
+    const handlePlusClick = () => {
+        navigate('/add-transactions');
+    };
 
     return (
         <>
@@ -106,7 +109,14 @@ function Dashboard() {
             <div className="dashboard">
                 <div className="dashboard-content">
                     <div className="main-content">
-                        <MyDatePicker onDateRangeChange={setDateRange} />
+                        <div className="date-picker-container">
+                            <div className="date-picker-plus-container">
+                                <MyDatePicker onDateRangeChange={setDateRange}/>
+                                <button onClick={handlePlusClick} className="plus-button">
+                                    <FaPlus/>
+                                </button>
+                            </div>
+                        </div>
                         <div className="summary">
                             <h3>Summary</h3>
                             <p>Total Income: ${totalIncome !== undefined ? totalIncome.toFixed(2) : "0.00"}</p>

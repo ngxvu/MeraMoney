@@ -26,6 +26,17 @@
   color: #333;
 }
 
+.date-picker-plus-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.plus-button {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
 .summary {
   margin-top: 2rem;
   padding: 1rem;

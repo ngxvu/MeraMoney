@@ -7,6 +7,7 @@ import Dashboard from './features/Dashboard/Dashboard';
 import ProtectedRoute from './components/ProtectedRoute';
 import Profile from './features/Profile/Profile';
 import Settings from './features/Settings/Settings';
+import AddTransactions from './features/AddTransactions/AddTransactions';
 
 function App() {
     const handleLogin = () => {
@@ -34,6 +35,11 @@ function App() {
                 <Route path={"/settings"} element={
                     <ProtectedRoute>
                         <Settings/>
+                    </ProtectedRoute>
+                }/>
+                <Route path={"/add-transactions"} element={
+                    <ProtectedRoute>
+                        <AddTransactions/>
                     </ProtectedRoute>
                 }/>
             </Routes>
