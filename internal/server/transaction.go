@@ -5,11 +5,13 @@ import (
 	"meramoney/backend/infrastructure/domains"
 	"net/http"
 	"strconv"
+	"time"
 
 	"github.com/gorilla/mux"
 )
 
 type TransactionRequest struct {
+	CreatedAt   *string `json:"created_at"`
 	CategoryID  int     `json:"category_id"`
 	Amount      float64 `json:"amount"`
 	Description string  `json:"description"`
@@ -18,7 +20,6 @@ type TransactionRequest struct {
 
 // CreateTransaction creates a new transaction
 func (s *Server) CreateTransaction(w http.ResponseWriter, r *http.Request) {
-
 	userID, ok := r.Context().Value("id").(int)
 	if !ok {
 		http.Error(w, "User ID not found in context", http.StatusUnauthorized)
@@ -37,6 +38,16 @@ func (s *Server) CreateTransaction(w http.ResponseWriter, r *http.Request) {
 	transaction.Amount = transactionRequest.Amount
 	transaction.Description = transactionRequest.Description
 	transaction.Type = transactionRequest.Type
+
+	// Parse and set the created_at field
+	if transactionRequest.CreatedAt != nil {
+		createdAt, err := time.Parse("2006-01-02", *transactionRequest.CreatedAt)
+		if err != nil {
+			http.Error(w, "Invalid date format", http.StatusBadRequest)
+			return
+		}
+		transaction.CreatedAt = &createdAt
+	}
 
 	if err := s.DB.Create(&transaction).Error; err != nil {
 		http.Error(w, "Failed to create transaction", http.StatusInternalServerError)

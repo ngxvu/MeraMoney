@@ -6,15 +6,13 @@ import (
 	"meramoney/backend/infrastructure/domains"
 	"net/http"
 	"strconv"
-	"time"
 )
 
 type CategoryRequest struct {
-	CreatedAt     *string `json:"created_at"`
-	Name          string  `json:"name"`
-	Description   string  `json:"description"`
-	Type          string  `json:"type"`
-	IconCatalogID int     `json:"icon_id"`
+	Name          string `json:"name"`
+	Description   string `json:"description"`
+	Type          string `json:"type"`
+	IconCatalogID int    `json:"icon_id"`
 }
 
 type GetAllCategoriesData struct {
@@ -54,16 +52,6 @@ func (s *Server) CreateCategory(w http.ResponseWriter, r *http.Request) {
 	category.UserID = userID
 	category.Type = categoryRequest.Type
 	category.IconID = categoryRequest.IconCatalogID
-
-	// Parse and set the created_at field
-	if categoryRequest.CreatedAt != nil {
-		createdAt, err := time.Parse("2006-01-02", *categoryRequest.CreatedAt)
-		if err != nil {
-			http.Error(w, "Invalid date format", http.StatusBadRequest)
-			return
-		}
-		category.CreatedAt = &createdAt
-	}
 
 	if err := s.DB.Create(&category).Error; err != nil {
 		http.Error(w, "Failed to create category", http.StatusInternalServerError)
