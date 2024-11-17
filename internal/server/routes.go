@@ -51,4 +51,6 @@ func (s *Server) Routes(r *mux.Router) {
 	protected.HandleFunc("/total-income", s.GetTotalIncome).Methods("GET")
 	protected.HandleFunc("/total-expense", s.GetTotalExpense).Methods("GET")
 
+	protected.HandleFunc("/list-icon-catalog", s.GetListIconCatalog).Methods("GET")
+
 }

@@ -15,6 +15,15 @@ type CategoryRequest struct {
 	IconCatalogID int    `json:"icon_id"`
 }
 
+type GetAllCategoriesData struct {
+	ID                  int    `json:"id"`
+	Name                string `json:"name"`
+	IconCatalogImageUrl string `json:"icon_catalog_image_url"`
+}
+
+type GetAllCategoriesResponse struct {
+}
+
 // CreateCategory creates a new category
 func (s *Server) CreateCategory(w http.ResponseWriter, r *http.Request) {
 
@@ -80,7 +89,6 @@ func (s *Server) GetCategory(w http.ResponseWriter, r *http.Request) {
 
 // GetAllCategories retrieves all categories
 func (s *Server) GetAllCategories(w http.ResponseWriter, r *http.Request) {
-
 	userID, ok := r.Context().Value("id").(int)
 	if !ok {
 		http.Error(w, "User ID not found in context", http.StatusUnauthorized)
@@ -108,8 +116,28 @@ func (s *Server) GetAllCategories(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Encode the categories to JSON and send the response
-	json.NewEncoder(w).Encode(categories)
+	// Prepare the response data
+	var responseData []GetAllCategoriesData
+	for _, category := range categories {
+		var iconCatalog domains.IconCatalog
+		if err := s.DB.First(&iconCatalog, category.IconID).Error; err != nil {
+			http.Error(w, "Failed to retrieve icon catalog", http.StatusInternalServerError)
+			return
+		}
+
+		responseData = append(responseData, GetAllCategoriesData{
+			ID:                  category.ID,
+			Name:                category.Name,
+			IconCatalogImageUrl: iconCatalog.ImageUrl,
+		})
+	}
+
+	// Encode the response data to JSON and send the response
+	w.Header().Set("Content-Type", "application/json")
+	if err := json.NewEncoder(w).Encode(responseData); err != nil {
+		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
+		return
+	}
 }
 
 // UpdateCategory updates a category by ID
