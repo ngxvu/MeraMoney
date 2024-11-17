@@ -10,6 +10,7 @@ import (
 
 func (s *Server) Migration(w http.ResponseWriter, r *http.Request) {
 	models := []interface{}{
+		domains.IconCatalog{},
 		domains.User{},
 		domains.Category{},
 		domains.Transaction{},

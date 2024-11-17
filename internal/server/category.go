@@ -11,6 +11,7 @@ import (
 type CategoryRequest struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
+	Type        string `json:"type"`
 }
 
 // CreateCategory creates a new category

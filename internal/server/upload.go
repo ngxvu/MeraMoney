@@ -1,8 +1,10 @@
 package server
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"meramoney/backend/infrastructure/domains"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -59,4 +61,32 @@ func (s *Server) UploadHandler(w http.ResponseWriter, r *http.Request) {
 	// Return the file URL
 	w.WriteHeader(http.StatusOK)
 	w.Write([]byte(fileURL))
+}
+
+// Get List Image from Uploads folder
+func (s *Server) GetListImage(w http.ResponseWriter, r *http.Request) {
+	files, err := ioutil.ReadDir("uploads")
+	if err != nil {
+		http.Error(w, "Unable to read directory", http.StatusInternalServerError)
+		return
+	}
+
+	var listImageFromUpload domains.ListImageFromUpload
+
+	var listImage []domains.ImageFromUpload
+
+	for _, image := range files {
+		listImage = append(listImage, domains.ImageFromUpload{
+			ImageUrl: image.Name(),
+		})
+	}
+
+	listImageFromUpload.ListImage = listImage
+
+	w.Header().Set("Content-Type", "application/json")
+	if err := json.NewEncoder(w).Encode(listImageFromUpload); err != nil {
+		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
+		return
+	}
+
 }

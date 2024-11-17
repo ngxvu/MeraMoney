@@ -14,6 +14,7 @@ type Server struct {
 
 func (s *Server) Routes(r *mux.Router) {
 	r.HandleFunc("/upload", s.UploadHandler).Methods("POST")
+	r.HandleFunc("/list-uploads", s.GetListImage).Methods("GET")
 	r.HandleFunc("/migrate", s.Migration).Methods("POST")
 	r.HandleFunc("/sign-up", s.SignUp).Methods("POST")
 	r.HandleFunc("/login", s.Login).Methods("POST")
