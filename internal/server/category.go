@@ -9,9 +9,10 @@ import (
 )
 
 type CategoryRequest struct {
-	Name        string `json:"name"`
-	Description string `json:"description"`
-	Type        string `json:"type"`
+	Name          string `json:"name"`
+	Description   string `json:"description"`
+	Type          string `json:"type"`
+	IconCatalogID int    `json:"icon_id"`
 }
 
 // CreateCategory creates a new category
@@ -40,6 +41,8 @@ func (s *Server) CreateCategory(w http.ResponseWriter, r *http.Request) {
 	category.Name = categoryRequest.Name
 	category.Description = categoryRequest.Description
 	category.UserID = userID
+	category.Type = categoryRequest.Type
+	category.IconID = categoryRequest.IconCatalogID
 
 	if err := s.DB.Create(&category).Error; err != nil {
 		http.Error(w, "Failed to create category", http.StatusInternalServerError)
@@ -90,7 +93,7 @@ func (s *Server) GetAllCategories(w http.ResponseWriter, r *http.Request) {
 		page = 1
 	}
 
-	pageSize, err := strconv.Atoi(r.URL.Query().Get("pageSize"))
+	pageSize, err := strconv.Atoi(r.URL.Query().Get("page_size"))
 	if err != nil || pageSize < 1 {
 		pageSize = 10
 	}

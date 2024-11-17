@@ -44,11 +44,3 @@ type IconCatalog struct {
 	ImageUrl string     `gorm:"type:text;unique" json:"image_url"`
 	Category []Category `json:"-" gorm:"foreignKey:IconID"`
 }
-
-type ListImageFromUpload struct {
-	ListImage []ImageFromUpload `json:"list_image"`
-}
-
-type ImageFromUpload struct {
-	ImageUrl string `json:"image_url"`
-}

@@ -12,6 +12,14 @@ import (
 	"time"
 )
 
+type ListImageFromUpload struct {
+	ListImage []ImageFromUpload `json:"list_image"`
+}
+
+type ImageFromUpload struct {
+	ImageUrl string `json:"image_url"`
+}
+
 func (s *Server) UploadHandler(w http.ResponseWriter, r *http.Request) {
 	// Parse the multipart form
 	err := r.ParseMultipartForm(10 << 20) // 10 MB
@@ -70,12 +78,12 @@ func (s *Server) GetListImage(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	var listImageFromUpload domains.ListImageFromUpload
+	var listImageFromUpload ListImageFromUpload
 
-	var listImage []domains.ImageFromUpload
+	var listImage []ImageFromUpload
 
 	for _, image := range files {
-		listImage = append(listImage, domains.ImageFromUpload{
+		listImage = append(listImage, ImageFromUpload{
 			ImageUrl: image.Name(),
 		})
 	}
