@@ -9,6 +9,7 @@ import Profile from './features/Profile/Profile';
 import Settings from './features/Settings/Settings';
 import AddTransactions from './features/AddTransactions/AddTransactions';
 import CategoryList from './features/CategoryList/CategoryList';
+import IconCatalogList from './features/IconCatalogList/IconCatalogList';
 
 function App() {
     const handleLogin = () => {
@@ -46,6 +47,11 @@ function App() {
                 <Route path={"/list-categories"} element={
                     <ProtectedRoute>
                         <CategoryList/>
+                    </ProtectedRoute>
+                }/>
+                <Route path={"/list-icon-catalog"} element={
+                    <ProtectedRoute>
+                        <IconCatalogList/>
                     </ProtectedRoute>
                 }/>
             </Routes>

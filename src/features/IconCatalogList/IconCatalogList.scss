@@ -1,0 +1,35 @@
+// src/features/IconCatalogList/IconCatalogList.scss
+.icon-catalog-list {
+    padding: 20px;
+}
+
+.icon-group {
+    margin-bottom: 40px;
+}
+
+.icon-group h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.icon-items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.icon-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.icon-item img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
