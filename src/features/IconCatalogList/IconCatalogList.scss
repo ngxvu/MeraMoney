@@ -33,3 +33,17 @@
     object-fit: cover;
     margin-bottom: 10px;
 }
+
+.icon-item button {
+    padding: 5px 10px;
+    font-size: 14px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.icon-item button:hover {
+    background-color: #0056b3;
+}

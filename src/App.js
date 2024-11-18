@@ -10,6 +10,7 @@ import Settings from './features/Settings/Settings';
 import AddTransactions from './features/AddTransactions/AddTransactions';
 import CategoryList from './features/CategoryList/CategoryList';
 import IconCatalogList from './features/IconCatalogList/IconCatalogList';
+import CreateCategory from './features/CreateCategory/CreateCategory';
 
 function App() {
     const handleLogin = () => {
@@ -52,6 +53,11 @@ function App() {
                 <Route path={"/list-icon-catalog"} element={
                     <ProtectedRoute>
                         <IconCatalogList/>
+                    </ProtectedRoute>
+                }/>
+                <Route path="/create-category" element={
+                    <ProtectedRoute>
+                        <CreateCategory/>
                     </ProtectedRoute>
                 }/>
             </Routes>

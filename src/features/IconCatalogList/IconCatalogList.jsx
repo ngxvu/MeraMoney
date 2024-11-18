@@ -36,6 +36,10 @@ function IconCatalogList() {
         fetchIconCatalog();
     }, [navigate]);
 
+    const handleSelectIcon = (iconId, iconUrl) => {
+        navigate(`/create-category?icon_id=${iconId}&icon_url=${iconUrl}`);
+    };
+
     const groupedIcons = iconCatalog.reduce((acc, icon) => {
         if (!acc[icon.icon_type]) {
             acc[icon.icon_type] = [];
@@ -53,6 +57,7 @@ function IconCatalogList() {
                         {groupedIcons[iconType].map(icon => (
                             <div key={icon.id} className="icon-item">
                                 <img src={icon.image_url} alt={icon.icon_type} />
+                                <button onClick={() => handleSelectIcon(icon.id, icon.image_url)}>Select</button>
                             </div>
                         ))}
                     </div>
