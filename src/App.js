@@ -11,6 +11,7 @@ import AddTransactions from './features/AddTransactions/AddTransactions';
 import CategoryList from './features/CategoryList/CategoryList';
 import IconCatalogList from './features/IconCatalogList/IconCatalogList';
 import CreateCategory from './features/CreateCategory/CreateCategory';
+import AddTransactionIncome from './features/AddTransactionIncome/AddTransactionIncome';
 
 function App() {
     const handleLogin = () => {
@@ -60,6 +61,11 @@ function App() {
                         <CreateCategory/>
                     </ProtectedRoute>
                 }/>
+                <Route path="/add-transaction-income" element={
+                    <ProtectedRoute>
+                        <AddTransactionIncome />
+                    </ProtectedRoute>
+                } />
             </Routes>
         </div>
     );

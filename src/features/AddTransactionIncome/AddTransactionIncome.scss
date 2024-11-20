@@ -1,0 +1,75 @@
+// src/features/AddTransactionIncome/AddTransactionIncome.scss
+.add-transaction-income {
+    padding: 20px;
+}
+
+.add-transaction-income h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.add-transaction-income form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-transaction-income form div {
+    margin-bottom: 15px;
+}
+
+.add-transaction-income form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.add-transaction-income form input,
+.add-transaction-income form select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.add-transaction-income form .category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.add-transaction-income form .category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add-transaction-income form .category-item img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-bottom: 5px;
+}
+
+.add-transaction-income form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add-transaction-income form button:hover {
+    background-color: #0056b3;
+}
+
+.date-picker-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}

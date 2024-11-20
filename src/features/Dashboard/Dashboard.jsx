@@ -112,9 +112,7 @@ function Dashboard() {
                         <div className="date-picker-container">
                             <div className="date-picker-plus-container">
                                 <MyDatePicker onDateRangeChange={setDateRange}/>
-                                <button onClick={handlePlusClick} className="plus-button">
-                                    <FaPlus/>
-                                </button>
+                            
                             </div>
                         </div>
                         <div className="summary">
@@ -123,6 +121,10 @@ function Dashboard() {
                             <p>Total Expense: ${totalExpense !== undefined ? totalExpense.toFixed(2) : "0.00"}</p>
                             <p>Net Balance: ${netBalance !== undefined ? netBalance.toFixed(2) : "0.00"}</p>
                         </div>
+                        
+                        <button onClick={handlePlusClick} className="plus-button">
+                            <FaPlus/>
+                        </button>
                     </div>
                 </div>
             </div>
