@@ -1,10 +1,18 @@
+// src/features/AddTransactions/AddTransactions.jsx
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import "./AddTransactions.scss";
 import logo from "../../assets/images/finalcs50-meramoney.png";
 
 function AddTransactions() {
+    const navigate = useNavigate();
+
     const handleButtonClick = (type) => {
-        console.log(`Button clicked: ${type}`);
+        if (type === 'Income') {
+            navigate('/add-transaction-income');
+        } else {
+            console.log(`Button clicked: ${type}`);
+        }
     };
 
     return (

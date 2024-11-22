@@ -12,6 +12,8 @@ import CategoryList from './features/CategoryList/CategoryList';
 import IconCatalogList from './features/IconCatalogList/IconCatalogList';
 import CreateCategory from './features/CreateCategory/CreateCategory';
 import AddTransactionIncome from './features/AddTransactionIncome/AddTransactionIncome';
+import './bot'; // Import the bot configuration
+
 
 function App() {
     const handleLogin = () => {
