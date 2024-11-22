@@ -2,7 +2,7 @@
 const { Telegraf } = require('telegraf');
 const axios = require('axios');
 
-const bot = new Telegraf('YOUR_BOT_TOKEN_HERE');
+const bot = new Telegraf('7859726614:AAGCsnSWkxs3wj-s7e-bYJ00bPeF_n3QoaI');
 
 const handleLogin = async (ctx, username, password) => {
     try {
