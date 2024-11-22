@@ -25,6 +25,7 @@ function Navbar() {
                 </button>
                 {dropdownOpen && (
                     <div className="dropdown-menu">
+                        <a href={"/dashboard"} onClick={(e) => { e.preventDefault(); navigate("/dashboard"); }}>Dashboard</a>
                         <a href="/settings" onClick={(e) => { e.preventDefault(); navigate("/settings"); }}>Settings</a>
                         <a href="/login" onClick={handleLogout}>Logout</a>
                     </div>
