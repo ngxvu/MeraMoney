@@ -38,8 +38,8 @@ export function MyDatePicker({ onDateRangeChange }) {
                         mode="range"
                         selected={selectedRange}
                         onSelect={setSelectedRange}
+                        className="custom-date-picker"
                     />
-                    <p>{footer}</p>
                 </div>
             )}
         </div>

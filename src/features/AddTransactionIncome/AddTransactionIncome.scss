@@ -1,6 +1,12 @@
-// src/features/AddTransactionIncome/AddTransactionIncome.scss
 .add-transaction-income {
     padding: 20px;
+    margin-top: 2rem;
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
 }
 
 .add-transaction-income h2 {
@@ -34,7 +40,7 @@
 
 .add-transaction-income form .category-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
     padding: 0 10px;
     max-height: 200px;
@@ -60,7 +66,7 @@
     padding: 10px 20px;
     font-size: 16px;
     color: white;
-    background-color: #007bff;
+    background-color: red;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -70,8 +76,23 @@
     background-color: #0056b3;
 }
 
-.date-picker-container {
+.single-date-picker-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     margin-top: 10px;
 }
+
+.single-date-picker-container .custom-date-picker-button {
+    background-color: #f0f0f0; /* Change to your desired background color */
+    color: #333; /* Change button text color */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.single-date-picker-container .custom-date-picker-button:hover {
+    background-color: #e0e0e0; /* Change button hover background color */
+}
+

@@ -53,16 +53,15 @@ function SignUp({ onSignUp }) {
 
   return (
     <>
-      <div className="signup-banner-container">
-        <header className="signup-banner">
-          <div className="signup-logo-container">
+      <div className="banner-container">
+        <header className="banner">
+          <div className="logo-container">
             <img src={logo} alt="Logo" />
             <span className="logo-text">Meramoney</span>
           </div>
         </header>
       </div>
       <div className="signup-container">
-        <h2>Sign Up</h2>
         <p>
           Already have an account? <a href="/login">Login here</a>
         </p>

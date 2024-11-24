@@ -1,8 +1,10 @@
-// src/features/AddTransactionIncome/AddTransactionIncome.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddTransactionIncome.scss';
 import SingleDayPicker from '../../components/SingleDayPicker/SingleDayPicker';
+import logo from "../../assets/images/finalcs50-meramoney.png";
+import Navbar from "../../components/Navbar/Navbar";
+import { FaCalendarAlt } from 'react-icons/fa';
 
 function AddTransactionIncome() {
     const [amount, setAmount] = useState('');
@@ -79,51 +81,58 @@ function AddTransactionIncome() {
     };
 
     return (
-        <div className="add-transaction-income">
-            <h2>Add Transaction Income</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Amount:</label>
-                    <input
-                        type="number"
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
-                        required
-                    />
-                </div>
-                <div>
-                    <label>Description:</label>
-                    <input
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Categories:</label>
-                    <div className="category-list">
-                        {categoryList.map(category => (
-                            <div key={category.id} className="category-item" onClick={() => setCategoryId(category.id)}>
-                                <img src={category.icon_catalog_image_url} alt={category.name} />
-                                <span>{category.name}</span>
-                            </div>
-                        ))}
+        <>
+            <div className="navbar-banner-container">
+                <header className="navbar-banner">
+                    <div className="navbar-logo-container">
+                        <img src={logo} alt="Logo"/>
+                        <span className="navbar-logo-text">Meramoney</span>
                     </div>
-                </div>
-                <div>
-                    <label>Date:</label>
-                    <button type="button" onClick={() => setShowDatePicker(!showDatePicker)}>
-                        {showDatePicker ? 'Hide Date Picker' : 'Show Date Picker'}
-                    </button>
-                    {showDatePicker && (
-                        <div className="date-picker-container">
-                            <SingleDayPicker onDateChange={setCreateAt} />
+                    <Navbar/>
+                </header>
+            </div>
+            <div className="add-transaction-income">
+                <form onSubmit={handleSubmit}>
+                    <div>
+                        <input
+                            type="number"
+                            value={amount}
+                            onChange={(e) => setAmount(e.target.value)}
+                            placeholder="Enter amount"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
+                            placeholder="Enter description"
+                        />
+                    </div>
+                    <div>
+                        <label>Categories:</label>
+                        <div className="category-list">
+                            {categoryList.map(category => (
+                                <div key={category.id} className="category-item"
+                                     onClick={() => setCategoryId(category.id)}>
+                                    <img src={category.icon_catalog_image_url} alt={category.name}/>
+                                    <span>{category.name}</span>
+                                </div>
+                            ))}
                         </div>
-                    )}
-                </div>
-                <button type="submit">Add Transaction</button>
-            </form>
-        </div>
+                    </div>
+                    <div>
+                        <div className="single-date-picker-container">
+                            <FaCalendarAlt onClick={() => setShowDatePicker(!showDatePicker)}/>
+                            {showDatePicker && <SingleDayPicker onDateChange={setCreateAt}/>}
+                        </div>
+                    </div>
+                    <button type="submit">Create</button>
+                </form>
+            </div>
+            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+        </>
     );
 }
 

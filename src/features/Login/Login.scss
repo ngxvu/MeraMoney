@@ -39,7 +39,7 @@ body {
 
     button {
         margin-top: 30px;
-        background-color: #007bff;
+        background-color: #94b9ff;
         color: white;
         border: none;
         cursor: pointer;
@@ -50,38 +50,3 @@ body {
     }
 }
 
-.login-banner-container {
-    width: 100%;
-    padding: 10px 0;
-}
-
-.login-banner {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.login-logo-container  {
-    display: flex;
-    align-items: center;
-}
-
-.login-logo-container img {
-    height: 50px;
-    margin-right: 10px;
-}
-
-.login-logo-container .logo-text {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-}
-
-
-footer {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #777;
-    background-color: transparent; // Ensure the footer background is transparent
-}

@@ -56,9 +56,9 @@ function Login({ onLogin }) {
 
     return (
         <>
-            <div className="login-banner-container">
-                <header className="login-banner">
-                    <div className="login-logo-container">
+            <div className="banner-container">
+                <header className="banner">
+                    <div className="logo-container">
                         <img src={logo} alt="Logo" />
                         <span className="logo-text">Meramoney</span>
                     </div>

@@ -2,7 +2,6 @@
     position: relative;
     display: flex;
     justify-content: flex-end;
-    padding: 10px;
     color: white;
     background-color: transparent; /* Remove background color */
 }
@@ -12,6 +11,7 @@
 }
 
 .dropdown-toggle {
+    margin-left: 100px;
     background-color: transparent; /* Remove background color */
     color: #333;
     border: none;
@@ -25,19 +25,18 @@
     right: 0;
     top: 100%;
     background-color: white;
-    color: black;
+    color: #333333;
     border: 1px solid #ccc;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
 
 .dropdown-menu a {
-    display: block;
+    display: inline-block;
     padding: 10px;
     text-decoration: none;
     color: black;
 }
 
 .dropdown-menu a:hover {
-    background-color: #f1f1f1;
 }

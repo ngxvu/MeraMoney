@@ -1,41 +1,23 @@
-.settings-banner-container {
-  width: 100%;
-  padding: 10px 0;
-}
-
-.settings-banner {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.settings-logo-container {
-  display: flex;
-  align-items: center;
-}
-
-.settings-logo-container img {
-  height: 50px;
-  margin-right: 10px;
-}
-
-.settings-logo-container .logo-text {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-}
-
-
-
 .settings-container {
-  max-width: 400px;
-  margin: 40px auto;
-  padding: 40px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-info, .update-profile {
+  padding: 20px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  background-color: white;
-  margin-top: 5%;
+  background-color: #ffffff;
+}
+
+.profile-info h2, .update-profile h2 {
+  margin-top: 0;
+}
+
+.settings-container input::placeholder {
+  color: #888; /* Gray color for placeholder text */
+  font-style: italic; /* Italic style for placeholder text */
 }
 
 .settings-container form {
@@ -62,7 +44,7 @@
 
   button {
     margin-top: 30px;
-    background-color: #007bff;
+    background-color: #94b9ff;
     color: white;
     border: none;
     cursor: pointer;
@@ -71,12 +53,4 @@
       background-color: #0056b3;
     }
   }
-}
-
-footer {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-  color: #777;
-  background-color: transparent; // Ensure the footer background is transparent
 }

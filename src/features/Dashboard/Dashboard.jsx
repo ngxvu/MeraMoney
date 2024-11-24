@@ -97,11 +97,11 @@ function Dashboard() {
 
     return (
         <>
-            <div className="dashboard-banner-container">
-                <header className="dashboard-banner">
-                    <div className="dashboard-logo-container">
+            <div className="navbar-banner-container">
+                <header className="navbar-banner">
+                    <div className="navbar-logo-container">
                         <img src={logo} alt="Logo"/>
-                        <span className="logo-text">Meramoney</span>
+                        <span className="navbar-logo-text">Meramoney</span>
                     </div>
                     <Navbar />
                 </header>
@@ -112,11 +112,10 @@ function Dashboard() {
                         <div className="date-picker-container">
                             <div className="date-picker-plus-container">
                                 <MyDatePicker onDateRangeChange={setDateRange}/>
-                            
                             </div>
                         </div>
                         <div className="summary">
-                            <h3>Summary</h3>
+                            <h2>Summary</h2>
                             <p>Total Income: ${totalIncome !== undefined ? totalIncome.toFixed(2) : "0.00"}</p>
                             <p>Total Expense: ${totalExpense !== undefined ? totalExpense.toFixed(2) : "0.00"}</p>
                             <p>Net Balance: ${netBalance !== undefined ? netBalance.toFixed(2) : "0.00"}</p>

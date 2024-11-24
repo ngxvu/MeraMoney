@@ -1,7 +1,9 @@
+// src/features/Settings/Settings.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import './Settings.scss';
+import Navbar from "../../components/Navbar/Navbar";
 
 function Settings() {
     const [profile, setProfile] = useState(null);
@@ -80,12 +82,13 @@ function Settings() {
 
     return (
         <>
-            <div className="settings-banner-container">
-                <header className="settings-banner">
-                    <div className="settings-logo-container">
+            <div className="navbar-banner-container">
+                <header className="navbar-banner">
+                    <div className="navbar-logo-container">
                         <img src={logo} alt="Logo"/>
-                        <span className="logo-text">Meramoney</span>
+                        <span className="navbar-logo-text">Meramoney</span>
                     </div>
+                    <Navbar/>
                 </header>
             </div>
             <div className="settings-content">
@@ -94,22 +97,23 @@ function Settings() {
                         <h2>Profile Information</h2>
                         <p>User Name: {profile.user_name}</p>
                     </div>
-                    <h2>Update Profile</h2>
-                    <form onSubmit={handleSubmit}>
-                        {error && <div className="error-message">{error}</div>}
-                        {success && <div className="success-message">{success}</div>}
-                        <label htmlFor="userName">User Name:</label>
-                        <input
-                            type="text"
-                            id="userName"
-                            value={userName}
-                            onChange={(e) => setUserName(e.target.value)}
-                            placeholder="User Name"
-                            required
-                        />
-                        <button type="submit">Update</button>
-                    </form>
-                    <button className="back-button" onClick={() => navigate('/dashboard')}>Back to Dashboard</button>
+                    <div className="update-profile">
+                        <h2>Update Profile</h2>
+                        <form onSubmit={handleSubmit}>
+                            {error && <div className="error-message">{error}</div>}
+                            {success && <div className="success-message">{success}</div>}
+                            <label htmlFor="userName">User Name:</label>
+                            <input
+                                type="text"
+                                id="userName"
+                                value={userName}
+                                onChange={(e) => setUserName(e.target.value)}
+                                placeholder="User Name"
+                                required
+                            />
+                            <button type="submit">Update</button>
+                        </form>
+                    </div>
                 </div>
             </div>
             <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
