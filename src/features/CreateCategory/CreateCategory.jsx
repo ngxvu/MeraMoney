@@ -58,6 +58,8 @@ function CreateCategory() {
     };
 
     return (
+        <div className="create-category-page">
+            <button onClick={() => navigate('/category')}>Back</button>
         <div className="create-category">
             <h2>Create Category</h2>
             <form onSubmit={handleSubmit}>
@@ -92,6 +94,7 @@ function CreateCategory() {
                 </div>
                 <button type="submit">Create</button>
             </form>
+        </div>
         </div>
     );
 }

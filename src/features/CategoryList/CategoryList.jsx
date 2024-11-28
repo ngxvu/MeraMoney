@@ -37,6 +37,8 @@ function CategoryList() {
     }, [navigate]);
 
     return (
+        <div className="category-list-page">
+            <button onClick={() => navigate('/category')}>Back</button>
         <div className="category-list">
             {categories.map(category => (
                 <div key={category.id} className="category-item">
@@ -44,6 +46,7 @@ function CategoryList() {
                     <p>{category.name}</p>
                 </div>
             ))}
+        </div>
         </div>
     );
 }
