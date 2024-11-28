@@ -115,7 +115,7 @@ function Dashboard() {
                             </div>
                         </div>
                         <div className="summary">
-                            <h2>Summary</h2>
+                            <h2>SUMMARY</h2>
                             <p>Total Income: ${totalIncome !== undefined ? totalIncome.toFixed(2) : "0.00"}</p>
                             <p>Total Expense: ${totalExpense !== undefined ? totalExpense.toFixed(2) : "0.00"}</p>
                             <p>Net Balance: ${netBalance !== undefined ? netBalance.toFixed(2) : "0.00"}</p>

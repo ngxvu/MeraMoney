@@ -1,19 +1,8 @@
 .add-transaction-income {
-    padding: 20px;
-    margin-top: 2rem;
-    padding: 1rem;
-    background-color: white;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 50px;
+    background-color: transparent;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-}
-
-.add-transaction-income h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
 }
 
 .add-transaction-income form {
@@ -22,12 +11,7 @@
 }
 
 .add-transaction-income form div {
-    margin-bottom: 15px;
-}
-
-.add-transaction-income form label {
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .add-transaction-income form input,
@@ -40,11 +24,20 @@
 
 .add-transaction-income form .category-list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 10px;
     padding: 0 10px;
-    max-height: 200px;
+    max-height: 300px;
     overflow-y: auto;
+}
+
+.add-transaction-income .category-list::-webkit-scrollbar {
+        width: 10px;
+    }
+
+.add-transaction-income .category-list::-webkit-scrollbar-thumb {
+    background-color: #e8ffed;
+    border-radius: 5px;
 }
 
 .add-transaction-income form .category-item {
@@ -53,23 +46,34 @@
     align-items: center;
     cursor: pointer;
     padding: 10px;
+
 }
 
 .add-transaction-income form .category-item img {
     width: 100px;
     height: 100px;
     object-fit: cover;
-    margin-bottom: 5px;
 }
 
-.add-transaction-income form button {
-    padding: 10px 20px;
-    font-size: 16px;
+.add-transaction-income form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.add-transaction-income .category-item.selected {
+    background-color: #94b9ff;
+    border-radius: 50px;
     color: white;
-    background-color: red;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+}
+
+.single-date-picker-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100% ; /* Set desired width */
 }
 
 .add-transaction-income form button:hover {
@@ -84,10 +88,15 @@
 }
 
 .single-date-picker-container .custom-date-picker-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
     background-color: #f0f0f0; /* Change to your desired background color */
     color: #333; /* Change button text color */
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
     padding: 10px;
     cursor: pointer;
 }
@@ -95,4 +104,48 @@
 .single-date-picker-container .custom-date-picker-button:hover {
     background-color: #e0e0e0; /* Change button hover background color */
 }
+
+
+.single-date-picker-container .rdp-day_button {
+    background-color: transparent; /* Change button background color */
+    color: #333; /* Change button text color */
+}
+
+.single-date-picker-container .rdp-range_end .rdp-day_button {
+    color: #ffffff;
+    background-color: #0fccce;
+}
+
+.single-date-picker-container .rdp-day rdp-focused .rdp-day_button {
+    color: #ffffff;
+    background-color: #0fccce;
+}
+
+.single-date-picker-container .rdp-selected .rdp-day_button {
+    border: #0fccce;
+}
+
+.rdp-root.single-date-picker-container {
+    --rdp-accent-color: #0fccce;
+    --rdp-accent-background-color: #cdffd842;
+}
+
+.single-date-picker-container .rdp-button_previous,
+.single-date-picker-container .rdp-button_next {
+    background-color: transparent; /* Change button hover background color */
+}
+
+
+
+.single-date-picker-container .rdp-button_previous:hover,
+.single-date-picker-container .rdp-button_next:hover {
+    background-color:  #0fccce;
+}
+
+.single-date-picker-container .rdp-button_previous svg.rdp-chevron polygon,
+.single-date-picker-container .rdp-button_next svg.rdp-chevron polygon {
+    fill: #333333; /* Change to your desired color */
+}
+
+
 

@@ -12,11 +12,16 @@
   margin-top: 2rem;
   margin-bottom: 2rem;
   padding: 1rem;
-  background-color: #ffffff;
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  justify-content: center; /* Center content vertically */
+  margin-left: auto; /* Center horizontally */
+  margin-right: auto; /* Center horizontally */
 }
 
 .summary h3 {
@@ -25,4 +30,47 @@
 
 .summary p {
   margin: 0.5rem 0;
+}
+
+
+/*date picker*/
+.custom-date-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100% ; /* Set desired width */
+}
+
+.custom-date-picker .rdp-day_button {
+  background-color: transparent; /* Change button background color */
+  color: #333; /* Change button text color */
+}
+
+.custom-date-picker .rdp-range_end .rdp-day_button {
+  color: #ffffff;
+  background-color: #0fccce;
+}
+
+.custom-date-picker .rdp-range_start .rdp-day_button {
+  color: #ffffff;
+  background-color: #0fccce;
+}
+
+.custom-date-picker .rdp-selected .rdp-day_button {
+  border: #0fccce;
+}
+
+.rdp-root.custom-date-picker {
+  --rdp-accent-color: #0fccce;
+  --rdp-accent-background-color: #cdffd842;
+}
+
+.custom-date-picker .rdp-button_previous:hover,
+.custom-date-picker .rdp-button_next:hover {
+  background-color: #0fccce; /* Change button hover background color */
+}
+
+.custom-date-picker .rdp-button_previous svg.rdp-chevron polygon,
+.custom-date-picker .rdp-button_next svg.rdp-chevron polygon {
+  fill: #333333; /* Change to your desired color */
 }

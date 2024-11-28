@@ -33,7 +33,7 @@ export function MyDatePicker({ onDateRangeChange }) {
                 <FaCalendarAlt /> {/* Calendar icon */}
             </button>
             {isPickerVisible && (
-                <div>
+                <div className="custom-date-picker">
                     <DayPicker
                         mode="range"
                         selected={selectedRange}

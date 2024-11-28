@@ -98,7 +98,7 @@ function AddTransactionIncome() {
                             type="number"
                             value={amount}
                             onChange={(e) => setAmount(e.target.value)}
-                            placeholder="Enter amount"
+                            placeholder="Amount"
                             required
                         />
                     </div>
@@ -107,14 +107,14 @@ function AddTransactionIncome() {
                             type="text"
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            placeholder="Enter description"
+                            placeholder="Description"
                         />
                     </div>
                     <div>
-                        <label>Categories:</label>
+                        <h2>CATEGORIES</h2>
                         <div className="category-list">
                             {categoryList.map(category => (
-                                <div key={category.id} className="category-item"
+                                <div key={category.id} className={`category-item ${categoryId === category.id ? 'selected' : ''}`}
                                      onClick={() => setCategoryId(category.id)}>
                                     <img src={category.icon_catalog_image_url} alt={category.name}/>
                                     <span>{category.name}</span>
@@ -123,10 +123,12 @@ function AddTransactionIncome() {
                         </div>
                     </div>
                     <div>
-                        <div className="single-date-picker-container">
-                            <FaCalendarAlt onClick={() => setShowDatePicker(!showDatePicker)}/>
-                            {showDatePicker && <SingleDayPicker onDateChange={setCreateAt}/>}
-                        </div>
+                        <button onClick={() => setShowDatePicker(!showDatePicker)}>
+                            <FaCalendarAlt/>
+                        </button>
+                        {showDatePicker && (
+                            <SingleDayPicker onDateChange={setCreateAt}/>
+                        )}
                     </div>
                     <button type="submit">Create</button>
                 </form>
