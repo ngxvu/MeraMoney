@@ -1,3 +1,5 @@
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -14,7 +16,7 @@ code {
 
 html, body {
   height: 100%;
-  background: linear-gradient(to bottom, #97ffae, #94b9ff);
+  background: linear-gradient(to bottom, rgb(151, 255, 174), rgb(148, 185, 255));
 }
 
 .banner-container {
@@ -90,7 +92,7 @@ footer {
   width: 100%;
   text-align: center;
   font-size: 14px;
-  color: #777;
+  color: rgba(119, 119, 119, 0.49);
   margin-top: 50px; /* Add margin to create space between content and footer */
 }
 
@@ -131,9 +133,15 @@ footer {
 .custom-date-picker .rdp-button_previous:hover,
 .custom-date-picker .rdp-button_next:hover {
   background-color: #0fccce; /* Change button hover background color */
+  border-radius: 20px;
 }
 
 .custom-date-picker .rdp-button_previous svg.rdp-chevron polygon,
 .custom-date-picker .rdp-button_next svg.rdp-chevron polygon {
-  fill: #333333; /* Change to your desired color */
+  fill: #007f804d; /* Change to your desired color */
+}
+
+.custom-date-picker .rdp-button_previous:hover svg.rdp-chevron polygon,
+.custom-date-picker .rdp-button_next:hover svg.rdp-chevron polygon {
+  fill: #ffffff; /* Change to white on hover */
 }

@@ -4,19 +4,23 @@
   gap: 20px;
 }
 
-.profile-info, .update-profile {
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #ffffff;
+.settings-container .update-profile {
+  flex: 1;
+  margin-right : 2rem;
+  margin-left : 2rem;
+  border: none;
+  box-shadow: 0 0 25px 0 rgba(0, 123, 255, 0.3);
+  padding: 1rem;
+  border-radius: 20px;
+  background: transparent;
 }
 
-.profile-info h2, .update-profile h2 {
+.settings-container .profile-info h2, .update-profile h2 {
   margin-top: 0;
 }
 
 .settings-container input::placeholder {
-  color: #888; /* Gray color for placeholder text */
+  color: #333333; /* Gray color for placeholder text */
   font-style: italic; /* Italic style for placeholder text */
 }
 
@@ -33,7 +37,7 @@
   }
 
   input, button {
-    width: 300px;
+    width: 100%;
     padding: 15px;
     margin: 0 auto 15px auto;
     border: 1px solid #ccc;
@@ -43,14 +47,28 @@
   }
 
   button {
-    margin-top: 30px;
-    background-color: #94b9ff;
+    margin-top: 20px;
+    background-color: rgba(0, 144, 144, 0.54);
     color: white;
     border: none;
     cursor: pointer;
 
     &:hover {
-      background-color: #0056b3;
+      background-color: #ffffffbf;
+      color: rgb(0, 144, 144);
     }
   }
+}
+
+.profile-info .user-icon {
+  font-size: 30px; /* Adjust the size of the icon */
+  color: rgba(0, 144, 144, 0.54); /* Set the color of the icon */
+}
+
+/* Add this to `src/features/Settings/Settings.scss` */
+.settings-container .settings-icon {
+  cursor: pointer;
+  font-size: 30px; /* Adjust the size of the icon */
+  color: rgba(0, 144, 144, 0.54); /* Set the color of the icon */
+  margin-top: 20px;
 }

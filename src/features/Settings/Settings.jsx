@@ -1,4 +1,3 @@
-// src/features/Settings/Settings.jsx
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import logo from "../../assets/images/finalcs50-meramoney.png";
@@ -10,6 +9,7 @@ function Settings() {
     const [userName, setUserName] = useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
+    const [showUpdateForm, setShowUpdateForm] = useState(false);
     const navigate = useNavigate();
 
     const fetchProfile = async () => {
@@ -94,26 +94,30 @@ function Settings() {
             <div className="settings-content">
                 <div className="settings-container">
                     <div className="profile-info">
-                        <h2>Profile Information</h2>
-                        <p>User Name: {profile.user_name}</p>
+                        <i className="fas fa-user user-icon"></i>
+                        <p>{profile.user_name}</p>
                     </div>
-                    <div className="update-profile">
-                        <h2>Update Profile</h2>
-                        <form onSubmit={handleSubmit}>
-                            {error && <div className="error-message">{error}</div>}
-                            {success && <div className="success-message">{success}</div>}
-                            <label htmlFor="userName">User Name:</label>
-                            <input
-                                type="text"
-                                id="userName"
-                                value={userName}
-                                onChange={(e) => setUserName(e.target.value)}
-                                placeholder="User Name"
-                                required
-                            />
-                            <button type="submit">Update</button>
-                        </form>
+                    <div className="settings-icon" onClick={() => setShowUpdateForm(!showUpdateForm)}>
+                        <i className="fas fa-cog"></i> {/* Font Awesome settings icon */}
                     </div>
+                    {showUpdateForm && (
+                        <div className="update-profile">
+                            <h2>UPDATE PROFILE</h2>
+                            <form onSubmit={handleSubmit}>
+                                {error && <div className="error-message">{error}</div>}
+                                {success && <div className="success-message">{success}</div>}
+                                <input
+                                    type="text"
+                                    id="userName"
+                                    value={userName}
+                                    onChange={(e) => setUserName(e.target.value)}
+                                    placeholder="New Username"
+                                    required
+                                />
+                                <button type="submit">Update</button>
+                            </form>
+                        </div>
+                    )}
                 </div>
             </div>
             <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>

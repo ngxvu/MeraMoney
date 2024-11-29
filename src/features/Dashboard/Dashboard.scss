@@ -1,6 +1,6 @@
 .dashboard {
   display: flex;
-align-items: center;
+  align-items: center;
   flex-direction: column;
   padding: 1rem;
 }
@@ -11,13 +11,14 @@ align-items: center;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 2rem;
+  margin-left: 2rem;
 }
 
 .dashboard .date-range-picker-container {
   flex: 1;
   margin-right: 2rem;
   border: none;
-  box-shadow: 0 0 30px 0 rgba(0, 123, 255, 0.3);
+  box-shadow: 0 0 25px 0 rgba(0, 123, 255, 0.3);
   padding: 1rem;
   border-radius: 20px;
   background: transparent;
@@ -27,6 +28,7 @@ align-items: center;
   flex: 2;
   display: flex;
   flex-direction: column;
+  margin-right: 2rem;
 }
 
 .dashboard .summary {
@@ -55,5 +57,5 @@ align-items: center;
 
 .dashboard .add-transaction-button:hover {
   background-color: #ffffffbf;
-  color: #0fccce;
+  color: rgba(0, 183, 255, 0.69);
 }

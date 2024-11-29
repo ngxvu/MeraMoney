@@ -1,4 +1,4 @@
-// src/features/AddTransactions/AddTransactions.jsx
+// Update the JSX in `src/features/AddTransactions/AddTransactions.jsx`
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./AddTransactions.scss";
@@ -27,8 +27,8 @@ function AddTransactions() {
                     <Navbar/>
                 </header>
             </div>
+            <h2>ADD TRANSACTIONS</h2>
             <div className="add-transactions-container">
-                <h2>Add Transactions</h2>
                 <div className="button-container">
                     <button onClick={() => handleButtonClick('Income')} className="transaction-button">Income</button>
                     <button onClick={() => handleButtonClick('Expenses')} className="transaction-button">Expenses
