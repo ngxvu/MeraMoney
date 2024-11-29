@@ -103,26 +103,23 @@ function Dashboard() {
                         <img src={logo} alt="Logo"/>
                         <span className="navbar-logo-text">Meramoney</span>
                     </div>
-                    <Navbar />
+                    <Navbar/>
                 </header>
             </div>
             <div className="dashboard">
-                <div className="dashboard-content">
-                    <div className="main-content">
-                        <div className="date-picker-container">
-                            <div className="date-picker-plus-container">
-                                <MyDatePicker onDateRangeChange={setDateRange}/>
-                            </div>
-                        </div>
+                <div className="left-section">
+                    <div className="date-range-picker-container">
+                        <MyDatePicker onDateRangeChange={setDateRange}/>
+                    </div>
+                    <div className="right-section">
                         <div className="summary">
                             <h2>SUMMARY</h2>
                             <p>Total Income: ${totalIncome !== undefined ? totalIncome.toFixed(2) : "0.00"}</p>
                             <p>Total Expense: ${totalExpense !== undefined ? totalExpense.toFixed(2) : "0.00"}</p>
                             <p>Net Balance: ${netBalance !== undefined ? netBalance.toFixed(2) : "0.00"}</p>
                         </div>
-                        
-                        <button onClick={handlePlusClick} className="plus-button">
-                            <FaPlus/>
+                        <button onClick={handlePlusClick} className="add-transaction-button">
+                          <FaPlus/>
                         </button>
                     </div>
                 </div>

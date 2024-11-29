@@ -29,10 +29,7 @@ export function MyDatePicker({ onDateRangeChange }) {
 
     return (
         <div>
-            <button onClick={() => setPickerVisible(!isPickerVisible)}>
-                <FaCalendarAlt /> {/* Calendar icon */}
-            </button>
-            {isPickerVisible && (
+            {(
                 <div className="custom-date-picker">
                     <DayPicker
                         mode="range"

@@ -1,76 +1,59 @@
-.date-picker-plus-container {
+.dashboard {
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.plus-button {
-  cursor: pointer;
-}
-
-.summary {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+align-items: center;
+  flex-direction: column;
   padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+
+.dashboard .left-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.dashboard .date-range-picker-container {
+  flex: 1;
+  margin-right: 2rem;
+  border: none;
+  box-shadow: 0 0 30px 0 rgba(0, 123, 255, 0.3);
+  padding: 1rem;
+  border-radius: 20px;
+  background: transparent;
+}
+
+.dashboard .right-section {
+  flex: 2;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: auto;
-  justify-content: center; /* Center content vertically */
-  margin-left: auto; /* Center horizontally */
-  margin-right: auto; /* Center horizontally */
 }
 
-.summary h3 {
+.dashboard .summary {
   margin-bottom: 1rem;
+  border: none;
+  box-shadow: 0 0 20px 0 rgba(0, 123, 255, 0.3);
+  padding: 1rem;
+  border-radius: 20px;
+  background: transparent;
 }
 
-.summary p {
-  margin: 0.5rem 0;
-}
-
-
-/*date picker*/
-.custom-date-picker {
+.dashboard .add-transaction-button {
+  cursor: pointer;
+  background-color: transparent;
+  color: #007f804d;
+  border: none;
+  border-radius: 20px;
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 100% ; /* Set desired width */
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+  width: 100%; /* Make button span full width */
+  padding: 1rem; /* Add padding */
 }
 
-.custom-date-picker .rdp-day_button {
-  background-color: transparent; /* Change button background color */
-  color: #333; /* Change button text color */
-}
-
-.custom-date-picker .rdp-range_end .rdp-day_button {
-  color: #ffffff;
-  background-color: #0fccce;
-}
-
-.custom-date-picker .rdp-range_start .rdp-day_button {
-  color: #ffffff;
-  background-color: #0fccce;
-}
-
-.custom-date-picker .rdp-selected .rdp-day_button {
-  border: #0fccce;
-}
-
-.rdp-root.custom-date-picker {
-  --rdp-accent-color: #0fccce;
-  --rdp-accent-background-color: #cdffd842;
-}
-
-.custom-date-picker .rdp-button_previous:hover,
-.custom-date-picker .rdp-button_next:hover {
-  background-color: #0fccce; /* Change button hover background color */
-}
-
-.custom-date-picker .rdp-button_previous svg.rdp-chevron polygon,
-.custom-date-picker .rdp-button_next svg.rdp-chevron polygon {
-  fill: #333333; /* Change to your desired color */
+.dashboard .add-transaction-button:hover {
+  background-color: #ffffffbf;
+  color: #0fccce;
 }

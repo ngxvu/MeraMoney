@@ -1,6 +1,6 @@
 // src/features/TransactionHistory/TransactionHistory.jsx
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import "./TransactionHistory.scss";
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import Navbar from "../../components/Navbar/Navbar";
@@ -11,12 +11,18 @@ function TransactionHistory() {
     const [dateRange, setDateRange] = useState({ from: undefined, to: undefined });
     const [transactions, setTransactions] = useState([]);
     const [page, setPage] = useState(1);
-    const [pageSize] = useState(10);
+    const [pageSize] = useState(5);
     const [typeFilter, setTypeFilter] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
     const [categoryNames, setCategoryNames] = useState({});
-    const [showCategoryFilter, setShowCategoryFilter] = useState(false);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() => {
+        if (location.state && location.state.selectedCategoryId !== undefined) {
+            setCategoryFilter(location.state.selectedCategoryId);
+        }
+    }, [location.state]);
 
     useEffect(() => {
         if (dateRange.from && dateRange.to) {
@@ -77,6 +83,11 @@ function TransactionHistory() {
         setCategoryNames(categoryNames);
     };
 
+    const formatDate = (dateString) => {
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+    };
+
     const handlePlusClick = () => {
         navigate('/add-transactions');
     };
@@ -95,42 +106,42 @@ function TransactionHistory() {
             <div className="transaction-history-page">
                 <div className="main-content">
                     <div className="date-picker-container">
-                        <div className="date-picker-plus-container">
+                        <div className="date-range-picker-container">
                             <MyDatePicker onDateRangeChange={setDateRange}/>
                         </div>
                     </div>
                     <div className="filters">
                         <button onClick={() => setTypeFilter(typeFilter === 'income' ? '' : 'income')}>Income</button>
                         <button onClick={() => setTypeFilter(typeFilter === 'expense' ? '' : 'expense')}>Expense</button>
-                        <button onClick={() => setShowCategoryFilter(!showCategoryFilter)}>Category</button>
-                        {showCategoryFilter && (
-                            <input
-                                type="text"
-                                value={categoryFilter}
-                                onChange={(e) => setCategoryFilter(e.target.value)}
-                                placeholder="Category ID"
-                            />
-                        )}
+                        <button onClick={() => navigate('/category-select')}>Category</button>
                     </div>
                     <div className="transaction-history">
                         <h2>Transaction History</h2>
                         <ul>
                             {transactions.map(transaction => (
                                 <li key={transaction.id}>
-                                    <p>{transaction.created_at}</p>
-                                    <p>{categoryNames[transaction.category_id]}</p>
-                                    <p>{transaction.amount}</p>
-                                    <p>{transaction.type}</p>
+                                    <div>
+                                        <strong>{transaction.type === 'income' ? 'Income' : 'Expense'}</strong>
+                                    </div>
+                                    <div>
+                                        <span>{transaction.amount}</span>
+                                    </div>
+                                    <div>
+                                        <span>{categoryNames[transaction.category_id]}</span>
+                                    </div>
+                                    <div>
+                                        <span>{formatDate(transaction.updated_at)}</span>
+                                    </div>
                                 </li>
                             ))}
                         </ul>
                         <div className="pagination">
-                            <button onClick={() => setPage(page > 1 ? page - 1 : 1)}>Previous</button>
+                            <button onClick={() => setPage(page > 1 ? page - 1 : 1)}>Prev</button>
                             <span>Page {page}</span>
                             <button onClick={() => setPage(page + 1)}>Next</button>
                         </div>
                     </div>
-                    <button onClick={handlePlusClick} className="plus-button">
+                    <button onClick={handlePlusClick} className="add-transaction-button">
                         <FaPlus/>
                     </button>
                 </div>
