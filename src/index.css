@@ -83,7 +83,6 @@ h2 {
 }
 
 /*footer*/
-
 footer {
   position: relative;
   bottom: 0;
@@ -96,52 +95,91 @@ footer {
   margin-top: 50px; /* Add margin to create space between content and footer */
 }
 
-
-
 /*date picker*/
-.custom-date-picker {
+.custom-range-date-picker {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100% ; /* Set desired width */
 }
 
-.custom-date-picker .rdp-day_button {
-  background-color: transparent; /* Change button background color */
-  color: #333; /* Change button text color */
-}
-
-.custom-date-picker .rdp-range_end .rdp-day_button {
+.custom-range-date-picker .rdp-range_end .rdp-day_button {
   color: #ffffff;
   background-color: #0fccce;
 }
 
-.custom-date-picker .rdp-range_start .rdp-day_button {
+.custom-range-date-picker .rdp-range_start .rdp-day_button {
   color: #ffffff;
   background-color: #0fccce;
 }
 
-.custom-date-picker .rdp-selected .rdp-day_button {
+.custom-range-date-picker .rdp-selected .rdp-day_button {
   border: #0fccce;
 }
 
-.rdp-root.custom-date-picker {
+.rdp-root.custom-range-date-picker {
   --rdp-accent-color: #0fccce;
   --rdp-accent-background-color: #cdffd842;
 }
 
-.custom-date-picker .rdp-button_previous:hover,
-.custom-date-picker .rdp-button_next:hover {
+.custom-range-date-picker .rdp-day.rdp-today {
+  color: #009090;
+}
+
+.custom-range-date-picker .rdp-button_previous svg.rdp-chevron polygon,
+.custom-range-date-picker .rdp-button_next svg.rdp-chevron polygon {
+  fill: #007f804d; /* Change to your desired color */
+}
+
+.custom-range-date-picker .rdp-button_previous:hover,
+.custom-range-date-picker .rdp-button_next:hover {
   background-color: #0fccce; /* Change button hover background color */
   border-radius: 20px;
 }
 
-.custom-date-picker .rdp-button_previous svg.rdp-chevron polygon,
-.custom-date-picker .rdp-button_next svg.rdp-chevron polygon {
+.custom-range-date-picker .rdp-button_previous:hover svg.rdp-chevron polygon,
+.custom-range-date-picker .rdp-button_next:hover svg.rdp-chevron polygon {
+  fill: #ffffff; /* Change to white on hover */
+}
+
+.custom-range-date-picker .rdp-day.rdp-today {
+  color: #009090; /* Change button text color */
+  font-weight: bold;
+}
+
+/*single-date-picker*/
+
+.customer-single-date-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%; /* Set desired width */
+}
+
+.customer-single-date-picker .rdp-button_previous svg.rdp-chevron polygon,
+.customer-single-date-picker .rdp-button_next svg.rdp-chevron polygon {
   fill: #007f804d; /* Change to your desired color */
 }
 
-.custom-date-picker .rdp-button_previous:hover svg.rdp-chevron polygon,
-.custom-date-picker .rdp-button_next:hover svg.rdp-chevron polygon {
+.customer-single-date-picker .rdp-button_previous:hover,
+.customer-single-date-picker .rdp-button_next:hover {
+  background-color: #0fccce; /* Change button hover background color */
+  border-radius: 20px;
+}
+
+.customer-single-date-picker .rdp-button_previous:hover svg.rdp-chevron polygon,
+.customer-single-date-picker .rdp-button_next:hover svg.rdp-chevron polygon {
   fill: #ffffff; /* Change to white on hover */
+}
+
+.customer-single-date-picker .rdp-day.rdp-today {
+  color: #009090; /* Change button text color */
+  font-weight: bold;
+}
+
+.customer-single-date-picker .rdp-focused {
+  color: #ffffff;
+  background-color: #0fccce;
+  border-radius: 50px;
+  font-weight: bold;
 }

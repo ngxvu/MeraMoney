@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './AddTransactionExpense.scss';
+import Navbar from '../../components/Navbar/Navbar';
 import SingleDayPicker from '../../components/SingleDayPicker/SingleDayPicker';
-import logo from "../../assets/images/finalcs50-meramoney.png";
-import Navbar from "../../components/Navbar/Navbar";
 import { FaCalendarAlt } from 'react-icons/fa';
+import logo from "../../assets/images/finalcs50-meramoney.png";
+import './AddTransactionExpense.scss';
 
-function AddTransactionExpense() {
+const AddTransactionExpense = () => {
     const [amount, setAmount] = useState('');
     const [description, setDescription] = useState('');
-    const [categoryId, setCategoryId] = useState('');
-    const [createAt, setCreateAt] = useState(null);
+    const [categoryId, setCategoryId] = useState(null);
     const [categoryList, setCategoryList] = useState([]);
+    const [createAt, setCreateAt] = useState(new Date());
     const [showDatePicker, setShowDatePicker] = useState(false);
     const navigate = useNavigate();
 
@@ -92,7 +92,7 @@ function AddTransactionExpense() {
                 </header>
             </div>
             <div className="add-transaction-expense">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="form-container">
                     <div>
                         <input
                             type="number"
@@ -123,7 +123,7 @@ function AddTransactionExpense() {
                         </div>
                     </div>
                     <div>
-                        <button onClick={() => setShowDatePicker(!showDatePicker)}>
+                        <button type="button" onClick={() => setShowDatePicker(!showDatePicker)} className="date-picker-toggle-button">
                             <FaCalendarAlt/>
                         </button>
                         {showDatePicker && (

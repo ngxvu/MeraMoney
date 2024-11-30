@@ -4,10 +4,11 @@ import 'react-day-picker/dist/style.css';
 
 function SingleDayPicker({ onDateChange }) {
     return (
-        <div className="single-date-picker-container">
+        <div className="customer-single-date-picker">
             <DayPicker
                 mode="single"
                 onSelect={onDateChange}
+                className="customer-single-date-picker"
             />
         </div>
     );

@@ -1,10 +1,10 @@
+// Update the JSX in `src/features/AddTransactionIncome/AddTransactionIncome.jsx`
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddTransactionIncome.scss';
 import SingleDayPicker from '../../components/SingleDayPicker/SingleDayPicker';
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import Navbar from "../../components/Navbar/Navbar";
-import { FaCalendarAlt } from 'react-icons/fa';
 
 function AddTransactionIncome() {
     const [amount, setAmount] = useState('');
@@ -12,7 +12,6 @@ function AddTransactionIncome() {
     const [categoryId, setCategoryId] = useState('');
     const [createAt, setCreateAt] = useState(null);
     const [categoryList, setCategoryList] = useState([]);
-    const [showDatePicker, setShowDatePicker] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -79,7 +78,7 @@ function AddTransactionIncome() {
             console.error('There was an error creating the transaction!', error);
         }
     };
-
+    
     return (
         <>
             <div className="navbar-banner-container">
@@ -92,29 +91,36 @@ function AddTransactionIncome() {
                 </header>
             </div>
             <div className="add-transaction-income">
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <input
-                            type="number"
-                            value={amount}
-                            onChange={(e) => setAmount(e.target.value)}
-                            placeholder="Amount"
-                            required
-                        />
+                <div className="left-section">
+                    <div className="date-picker-container">
+                        <SingleDayPicker onDateChange={setCreateAt}/>
                     </div>
-                    <div>
-                        <input
-                            type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            placeholder="Description"
-                        />
+                    <div className="form-container">
+                        <form onSubmit={handleSubmit}>
+                                <input
+                                    type="number"
+                                    value={amount}
+                                    onChange={(e) => setAmount(e.target.value)}
+                                    placeholder="Amount"
+                                    required
+                                />
+                                <input
+                                    type="text"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                    placeholder="Description"
+                                />
+                            <button type="submit">Create</button>
+                        </form>
                     </div>
-                    <div>
+                </div>
+                <div className="right-section">
+                    <div className="list-category-container">
                         <h2>CATEGORIES</h2>
                         <div className="category-list">
                             {categoryList.map(category => (
-                                <div key={category.id} className={`category-item ${categoryId === category.id ? 'selected' : ''}`}
+                                <div key={category.id}
+                                     className={`category-item ${categoryId === category.id ? 'selected' : ''}`}
                                      onClick={() => setCategoryId(category.id)}>
                                     <img src={category.icon_catalog_image_url} alt={category.name}/>
                                     <span>{category.name}</span>
@@ -122,16 +128,7 @@ function AddTransactionIncome() {
                             ))}
                         </div>
                     </div>
-                    <div>
-                        <button onClick={() => setShowDatePicker(!showDatePicker)}>
-                            <FaCalendarAlt/>
-                        </button>
-                        {showDatePicker && (
-                            <SingleDayPicker onDateChange={setCreateAt}/>
-                        )}
-                    </div>
-                    <button type="submit">Create</button>
-                </form>
+                </div>
             </div>
             <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
         </>

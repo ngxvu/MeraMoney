@@ -30,12 +30,12 @@ export function MyDatePicker({ onDateRangeChange }) {
     return (
         <div>
             {(
-                <div className="custom-date-picker">
+                <div className="custom-range-date-picker">
                     <DayPicker
                         mode="range"
                         selected={selectedRange}
                         onSelect={setSelectedRange}
-                        className="custom-date-picker"
+                        className="custom-range-date-picker"
                     />
                 </div>
             )}

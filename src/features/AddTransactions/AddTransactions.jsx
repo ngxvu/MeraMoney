@@ -11,8 +11,8 @@ function AddTransactions() {
     const handleButtonClick = (type) => {
         if (type === 'Income') {
             navigate('/add-transaction-income');
-        } else {
-            console.log(`Button clicked: ${type}`);
+        } if (type === 'Expenses') {
+            navigate('/add-transaction-expense');
         }
     };
 
