@@ -119,16 +119,12 @@ footer {
 
 .rdp-root.custom-range-date-picker {
   --rdp-accent-color: #0fccce;
-  --rdp-accent-background-color: #cdffd842;
-}
-
-.custom-range-date-picker .rdp-day.rdp-today {
-  color: #009090;
+  --rdp-accent-background-color: rgba(15, 204, 206, 0.22);
 }
 
 .custom-range-date-picker .rdp-button_previous svg.rdp-chevron polygon,
 .custom-range-date-picker .rdp-button_next svg.rdp-chevron polygon {
-  fill: #007f804d; /* Change to your desired color */
+  fill: rgba(0, 127, 128, 0.46); /* Change to your desired color */
 }
 
 .custom-range-date-picker .rdp-button_previous:hover,
@@ -143,7 +139,7 @@ footer {
 }
 
 .custom-range-date-picker .rdp-day.rdp-today {
-  color: #009090; /* Change button text color */
+  color: #0fccce;
   font-weight: bold;
 }
 
@@ -173,7 +169,7 @@ footer {
 }
 
 .customer-single-date-picker .rdp-day.rdp-today {
-  color: #009090; /* Change button text color */
+  color: #0fccce;
   font-weight: bold;
 }
 
