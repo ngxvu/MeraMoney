@@ -59,7 +59,7 @@ function Login({ onLogin }) {
             <div className="banner-container">
                 <header className="banner">
                     <div className="logo-container">
-                        <img src={logo} alt="Logo" />
+                        <img src={logo} alt="Logo"/>
                         <span className="logo-text">Meramoney</span>
                     </div>
                 </header>
@@ -67,7 +67,7 @@ function Login({ onLogin }) {
             <div className="login-container">
                 <h2>Login to Meramoney</h2>
                 <p>
-                    Don't have an account yet? <a href="/signup">Sign up here!</a>
+                    Don't have an account yet? <a href="/signup" className="signup-link">Sign up here!</a>
                 </p>
                 <form onSubmit={handleSubmit}>
                     {error && <div className="error-message">{error}</div>}
@@ -90,7 +90,9 @@ function Login({ onLogin }) {
                         placeholder="Password"
                         required
                     />
-                    <button type="submit">Login</button>
+                    <div className="login-container-button">
+                        <button type="submit">Login</button>
+                    </div>
                 </form>
             </div>
             <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
