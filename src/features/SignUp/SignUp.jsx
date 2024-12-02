@@ -63,7 +63,7 @@ function SignUp({ onSignUp }) {
       </div>
       <div className="signup-container">
         <p>
-          Already have an account? <a href="/login">Login here</a>
+          Already have an account? <a href="/login" className="login-link">Login here!</a>
         </p>
         {error && <p className="error">{error}</p>}{" "}
         {success && <p className="success">{success}</p>}{" "}
