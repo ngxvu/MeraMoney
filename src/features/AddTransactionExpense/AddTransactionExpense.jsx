@@ -79,7 +79,7 @@ const AddTransactionExpense = () => {
             console.error('There was an error creating the transaction!', error);
         }
     };
-
+    
     return (
         <>
             <div className="navbar-banner-container">
@@ -92,29 +92,36 @@ const AddTransactionExpense = () => {
                 </header>
             </div>
             <div className="add-transaction-expense">
-                <form onSubmit={handleSubmit} className="form-container">
-                    <div>
-                        <input
-                            type="number"
-                            value={amount}
-                            onChange={(e) => setAmount(e.target.value)}
-                            placeholder="Amount"
-                            required
-                        />
+                <div className="left-section">
+                    <div className="date-picker-container">
+                        <SingleDayPicker onDateChange={setCreateAt}/>
                     </div>
-                    <div>
-                        <input
-                            type="text"
-                            value={description}
-                            onChange={(e) => setDescription(e.target.value)}
-                            placeholder="Description"
-                        />
+                    <div className="form-container">
+                        <form onSubmit={handleSubmit}>
+                            <input
+                                type="number"
+                                value={amount}
+                                onChange={(e) => setAmount(e.target.value)}
+                                placeholder="Amount"
+                                required
+                            />
+                            <input
+                                type="text"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                placeholder="Description"
+                            />
+                            <button type="submit">Create</button>
+                        </form>
                     </div>
-                    <div>
+                </div>
+                <div className="right-section">
+                    <div className="list-category-container">
                         <h2>CATEGORIES</h2>
                         <div className="category-list">
                             {categoryList.map(category => (
-                                <div key={category.id} className={`category-item ${categoryId === category.id ? 'selected' : ''}`}
+                                <div key={category.id}
+                                     className={`category-item ${categoryId === category.id ? 'selected' : ''}`}
                                      onClick={() => setCategoryId(category.id)}>
                                     <img src={category.icon_catalog_image_url} alt={category.name}/>
                                     <span>{category.name}</span>
@@ -122,16 +129,7 @@ const AddTransactionExpense = () => {
                             ))}
                         </div>
                     </div>
-                    <div>
-                        <button type="button" onClick={() => setShowDatePicker(!showDatePicker)} className="date-picker-toggle-button">
-                            <FaCalendarAlt/>
-                        </button>
-                        {showDatePicker && (
-                            <SingleDayPicker onDateChange={setCreateAt}/>
-                        )}
-                    </div>
-                    <button type="submit">Create</button>
-                </form>
+                </div>
             </div>
             <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
         </>

@@ -23,7 +23,7 @@
     position: absolute;
     right: 0;
     top: 100%;
-    background: linear-gradient(to bottom, #97ffae, #94b9ff);
+    background: #eeeeee;
     color: #333333;
     border: none;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -42,5 +42,6 @@
 }
 
 .dropdown-menu a:hover {
-    color: #009090;
+    color: #0fccce;
+    font-weight: bold;
 }
