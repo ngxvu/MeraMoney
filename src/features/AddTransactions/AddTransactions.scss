@@ -26,20 +26,21 @@
 }
 
 .add-transactions-container .transaction-button {
+  font-weight: bold;
   width: 100%;
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 20px;
   box-sizing: border-box;
   font-size: 14px;
-  background-color: rgba(0, 144, 144, 0.54);
-  color: white;
+  background-color: #ffffffbf;
+  color: #007f804d;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .add-transactions-container .transaction-button:hover {
-  background-color: #ffffffbf;
-  color: rgb(0, 144, 144);
+  background-color: #eeeeee;
+  color: #0fccce;
 }
