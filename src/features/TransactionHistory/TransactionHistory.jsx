@@ -91,32 +91,56 @@ function TransactionHistory() {
     const handlePlusClick = () => {
         navigate('/add-transactions');
     };
-
-    return (
-        <>
-            <div className="navbar-banner-container">
-                <header className="navbar-banner">
-                    <div className="navbar-logo-container">
-                        <img src={logo} alt="Logo"/>
-                        <span className="navbar-logo-text">Meramoney</span>
-                    </div>
-                    <Navbar />
-                </header>
-            </div>
-            <div className="transaction-history-page">
-                <div className="main-content">
-                    <div className="date-picker-container">
-                        <div className="date-range-picker-container">
-                            <MyDatePicker onDateRangeChange={setDateRange}/>
-                        </div>
+    
+return (
+    <>
+        <div className="navbar-banner-container">
+            <header className="navbar-banner">
+                <div className="navbar-logo-container">
+                    <img src={logo} alt="Logo"/>
+                    <span className="navbar-logo-text">Meramoney</span>
+                </div>
+                <Navbar />
+            </header>
+        </div>
+        <div className="transaction-history-page">
+            <div className="main-content">
+                <div className="left-panel">
+                    <div className="date-range-picker-container">
+                        <MyDatePicker onDateRangeChange={setDateRange}/>
                     </div>
                     <div className="filters">
-                        <button onClick={() => setTypeFilter(typeFilter === 'income' ? '' : 'income')}>Income</button>
-                        <button onClick={() => setTypeFilter(typeFilter === 'expense' ? '' : 'expense')}>Expense</button>
+                        <h2>Filters</h2>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={typeFilter === 'income'}
+                                onChange={() => setTypeFilter(typeFilter === 'income' ? '' : 'income')}
+                            />
+                            Income
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={typeFilter === 'expense'}
+                                onChange={() => setTypeFilter(typeFilter === 'expense' ? '' : 'expense')}
+                            />
+                            Expense
+                        </label>
                         <button onClick={() => navigate('/category-select')}>Category</button>
                     </div>
+                </div>
+                <div className="right-panel">
                     <div className="transaction-history">
                         <h2>Transaction History</h2>
+                        <ul className="transaction-history-header">
+                            <li>
+                                <div><strong>Type</strong></div>
+                                <div><strong>Amount</strong></div>
+                                <div><strong>Category</strong></div>
+                                <div><strong>Date</strong></div>
+                            </li>
+                        </ul>
                         <ul>
                             {transactions.map(transaction => (
                                 <li key={transaction.id}>
@@ -135,20 +159,25 @@ function TransactionHistory() {
                                 </li>
                             ))}
                         </ul>
-                        <div className="pagination">
-                            <button onClick={() => setPage(page > 1 ? page - 1 : 1)}>Prev</button>
-                            <span>Page {page}</span>
-                            <button onClick={() => setPage(page + 1)}>Next</button>
-                        </div>
+                        {transactions.length > 0 && (
+                            <div className="pagination">
+                                <button onClick={() => setPage(page > 1 ? page - 1 : 1)}>Prev</button>
+                                <span>Page {page}</span>
+                                <button onClick={() => setPage(page + 1)}>Next</button>
+                            </div>
+                        )}
                     </div>
-                    <button onClick={handlePlusClick} className="add-transaction-button">
-                        <FaPlus/>
-                    </button>
+                    <div className="add-transaction-button">
+                        <button onClick={handlePlusClick} className="add-transaction-button">
+                            <FaPlus/>
+                        </button>
+                    </div>
                 </div>
             </div>
-            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
-        </>
-    );
+        </div>
+        <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+    </>
+);
 }
 
 export default TransactionHistory;

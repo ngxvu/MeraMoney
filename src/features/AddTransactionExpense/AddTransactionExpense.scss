@@ -94,7 +94,7 @@
     margin: 0 auto 1rem;
     padding: 0.75rem;
     background-color: #ffffffbf;
-    color: #007f804d;
+    color: #0fccce;
     border: none;
     border-radius: 20px;
     font-size: 1rem;
@@ -120,7 +120,7 @@
 
 .add-transaction-expense .form-container input[type="number"]::placeholder,
 .add-transaction-expense .form-container input[type="text"]::placeholder {
-    color: #0fccce; /* Set the color for the placeholder */
+    color: #007f804d; /* Set the color for the placeholder */
     opacity: 2; /* Ensure the placeholder is fully opaque */
 }
 

@@ -94,11 +94,8 @@ function Settings() {
             <div className="settings-content">
                 <div className="settings-container">
                     <div className="profile-info">
-                        <i className="fas fa-user user-icon"></i>
-                        <p>{profile.user_name}</p>
-                    </div>
-                    <div className="settings-icon" onClick={() => setShowUpdateForm(!showUpdateForm)}>
-                        <i className="fas fa-cog"></i> {/* Font Awesome settings icon */}
+                        <i className="fas fa-user user-icon" onClick={() => setShowUpdateForm(!showUpdateForm)}></i>
+                        <p className="profile-username">{profile.user_name}</p>
                     </div>
                     {showUpdateForm && (
                         <div className="update-profile">

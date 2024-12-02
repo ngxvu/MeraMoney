@@ -2,6 +2,14 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  align-items: center; /* Center children horizontally */
+  justify-content: center; /* Center children vertically */
+}
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .settings-container .update-profile {
@@ -12,15 +20,11 @@
   box-shadow: 0 0 25px 0 rgba(0, 123, 255, 0.3);
   padding: 1rem;
   border-radius: 20px;
-  background: transparent;
-}
-
-.settings-container .profile-info h2, .update-profile h2 {
-  margin-top: 0;
+  background: #eeeeee;
 }
 
 .settings-container input::placeholder {
-  color: #333333; /* Gray color for placeholder text */
+  color: #007f804d; /* Gray color for placeholder text */
   font-style: italic; /* Italic style for placeholder text */
 }
 
@@ -28,34 +32,27 @@
   display: flex;
   flex-direction: column;
 
-  div {
-    margin-bottom: 15px;
-  }
-
-  label {
-    margin-bottom: 5px;
-  }
-
   input, button {
     width: 100%;
     padding: 15px;
     margin: 0 auto 15px auto;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #007f804d;
+    border-radius: 20px;
     box-sizing: border-box;
     font-size: 14px;
   }
 
   button {
-    margin-top: 20px;
-    background-color: rgba(0, 144, 144, 0.54);
-    color: white;
+    margin-top: 10px;
+    background-color: #ffffffbf;
+    color: #007f804d;
     border: none;
     cursor: pointer;
+    font-weight: bold;
 
     &:hover {
-      background-color: #ffffffbf;
-      color: rgb(0, 144, 144);
+      background-color: #eeeeee;
+      color: #0fccce;
     }
   }
 }
@@ -65,10 +62,28 @@
   color: rgba(0, 144, 144, 0.54); /* Set the color of the icon */
 }
 
-/* Add this to `src/features/Settings/Settings.scss` */
-.settings-container .settings-icon {
+
+.profile-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.profile-username {
+  color: #333;
+  background-color: #eeeeee;
+  padding: 0.5rem;
+  border-radius: 20px;
+  box-shadow: 0 0 20px 0 rgba(0, 123, 255, 0.3);
+  margin-left: 20px ;
+}
+
+.user-icon {
   cursor: pointer;
-  font-size: 30px; /* Adjust the size of the icon */
-  color: rgba(0, 144, 144, 0.54); /* Set the color of the icon */
-  margin-top: 20px;
+  font-size: 30px;
+  color: rgba(0, 144, 144, 0.54);
+}
+
+.user-icon:hover {
+  color: #0fccce;
 }
