@@ -92,92 +92,86 @@ function TransactionHistory() {
         navigate('/add-transactions');
     };
     
-return (
-    <>
-        <div className="navbar-banner-container">
-            <header className="navbar-banner">
-                <div className="navbar-logo-container">
-                    <img src={logo} alt="Logo"/>
-                    <span className="navbar-logo-text">Meramoney</span>
-                </div>
-                <Navbar />
-            </header>
-        </div>
-        <div className="transaction-history-page">
-            <div className="main-content">
-                <div className="left-panel">
-                    <div className="date-range-picker-container">
-                        <MyDatePicker onDateRangeChange={setDateRange}/>
+    return (
+        <>
+            <div className="navbar-banner-container">
+                <header className="navbar-banner">
+                    <div className="navbar-logo-container">
+                        <img src={logo} alt="Logo"/>
+                        <span className="navbar-logo-text">Meramoney</span>
                     </div>
-                    <div className="filters">
-                        <h2>Filters</h2>
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={typeFilter === 'income'}
-                                onChange={() => setTypeFilter(typeFilter === 'income' ? '' : 'income')}
-                            />
-                            Income
-                        </label>
-                        <label>
-                            <input
-                                type="checkbox"
-                                checked={typeFilter === 'expense'}
-                                onChange={() => setTypeFilter(typeFilter === 'expense' ? '' : 'expense')}
-                            />
-                            Expense
-                        </label>
-                        <button onClick={() => navigate('/category-select')}>Category</button>
+                    <Navbar />
+                </header>
+            </div>
+            <div className="transaction-history-page">
+                <div className="main-content">
+                    <div className="left-panel">
+                        <div className="date-range-picker-container">
+                            <MyDatePicker onDateRangeChange={setDateRange}/>
+                        </div>
+                        <div className="filters">
+                            <h2>Filters</h2>
+                            <button
+                                className={typeFilter === 'income' ? 'active' : ''}
+                                onClick={() => setTypeFilter(typeFilter === 'income' ? '' : 'income')}
+                            >
+                                Income
+                            </button>
+                            <button
+                                className={typeFilter === 'expense' ? 'active' : ''}
+                                onClick={() => setTypeFilter(typeFilter === 'expense' ? '' : 'expense')}
+                            >
+                                Expense
+                            </button>
+                            <button onClick={() => navigate('/category-select')}>Category</button>
+                        </div>
                     </div>
-                </div>
-                <div className="right-panel">
-                    <div className="transaction-history">
-                        <h2>Transaction History</h2>
-                        <ul className="transaction-history-header">
-                            <li>
-                                <div><strong>Type</strong></div>
-                                <div><strong>Amount</strong></div>
-                                <div><strong>Category</strong></div>
-                                <div><strong>Date</strong></div>
-                            </li>
-                        </ul>
-                        <ul>
-                            {transactions.map(transaction => (
-                                <li key={transaction.id}>
-                                    <div>
-                                        <strong>{transaction.type === 'income' ? 'Income' : 'Expense'}</strong>
-                                    </div>
-                                    <div>
-                                        <span>{transaction.amount}</span>
-                                    </div>
-                                    <div>
-                                        <span>{categoryNames[transaction.category_id]}</span>
-                                    </div>
-                                    <div>
-                                        <span>{formatDate(transaction.updated_at)}</span>
-                                    </div>
+                    <div className="right-panel">
+                        <div className="transaction-history">
+                            <h2>Transaction History</h2>
+                            <ul className="transaction-history-header">
+                                <li>
+                                    <div><strong>Type</strong></div>
+                                    <div><strong>Amount</strong></div>
+                                    <div><strong>Category</strong></div>
+                                    <div><strong>Date</strong></div>
                                 </li>
-                            ))}
-                        </ul>
-                        {transactions.length > 0 && (
-                            <div className="pagination">
-                                <button onClick={() => setPage(page > 1 ? page - 1 : 1)}>Prev</button>
-                                <span>Page {page}</span>
-                                <button onClick={() => setPage(page + 1)}>Next</button>
-                            </div>
-                        )}
-                    </div>
-                    <div className="add-transaction-button">
-                        <button onClick={handlePlusClick} className="add-transaction-button">
-                            <FaPlus/>
-                        </button>
+                            </ul>
+                            <ul>
+                                {transactions.map(transaction => (
+                                    <li key={transaction.id}>
+                                        <div>
+                                            <strong>{transaction.type === 'income' ? 'Income' : 'Expense'}</strong>
+                                        </div>
+                                        <div>
+                                            <span>{transaction.amount}</span>
+                                        </div>
+                                        <div>
+                                            <span>{categoryNames[transaction.category_id]}</span>
+                                        </div>
+                                        <div>
+                                            <span>{formatDate(transaction.updated_at)}</span>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                            {transactions.length > 0 && (
+                                <div className="pagination">
+                                    <button onClick={() => setPage(page > 1 ? page - 1 : 1)}>Prev</button>
+                                    <span>Page {page}</span>
+                                    <button onClick={() => setPage(page + 1)}>Next</button>
+                                </div>
+                            )}
+                        </div>
+                            <button onClick={handlePlusClick} className="add-transaction-button">
+                                <FaPlus/>
+                            </button>
                     </div>
                 </div>
             </div>
-        </div>
-        <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
-    </>
-);
+            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+        </>
+    );
 }
 
 export default TransactionHistory;
