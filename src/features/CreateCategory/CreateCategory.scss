@@ -40,10 +40,17 @@
 .create-category form select {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    color:  #007f804d;
+    border: 1px solid #007f804d;
     border-radius: 20px;
     margin-bottom: 15px;
 }
+
+.create-category form select:hover {
+    background-color: #eeeeee;
+    color: #0fccce;
+}
+
 
 .create-category-page .create-category form button {
     padding: 10px 20px;
@@ -106,4 +113,9 @@
 .create-category-page .create-button:hover {
     background-color: #eeeeee;
     color: #0fccce;
+}
+
+.create-category input::placeholder {
+    color: #007f804d;
+    font-style: italic;
 }

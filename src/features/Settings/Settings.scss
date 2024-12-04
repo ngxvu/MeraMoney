@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
-  align-items: center; /* Center children horizontally */
-  justify-content: center; /* Center children vertically */
+  align-items: center;
+  justify-content: center;
 }
 
 .profile-info {
@@ -24,8 +24,8 @@
 }
 
 .settings-container input::placeholder {
-  color: #007f804d; /* Gray color for placeholder text */
-  font-style: italic; /* Italic style for placeholder text */
+  color: #007f804d;
+  font-style: italic;
 }
 
 .settings-container form {
@@ -58,8 +58,8 @@
 }
 
 .profile-info .user-icon {
-  font-size: 30px; /* Adjust the size of the icon */
-  color: rgba(0, 144, 144, 0.54); /* Set the color of the icon */
+  font-size: 30px;
+  color: rgba(0, 144, 144, 0.54);
 }
 
 

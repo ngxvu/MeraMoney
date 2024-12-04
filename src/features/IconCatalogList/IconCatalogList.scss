@@ -1,15 +1,14 @@
-// src/features/IconCatalogList/IconCatalogList.scss
 .icon-catalog-list {
     padding: 20px;
-    flex: 2; /* Chia tỷ lệ chiều cao: phần summary chiếm 2 phần */
+    flex: 2;
     margin-bottom: 1rem;
     border: none;
     box-shadow: 0 0 20px 0 rgba(0, 123, 255, 0.3);
     padding: 1rem;
     border-radius: 20px;
     background: #eeeeee;
-    max-height: 600px; /* Add this line to set the maximum width */
-    overflow-y: auto; /* Enable vertical scrolling */
+    max-height: 600px;
+    overflow-y: auto;
 }
 
 .icon-group {

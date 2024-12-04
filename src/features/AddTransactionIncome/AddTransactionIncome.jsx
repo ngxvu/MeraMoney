@@ -1,4 +1,3 @@
-// Update the JSX in `src/features/AddTransactionIncome/AddTransactionIncome.jsx`
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AddTransactionIncome.scss';

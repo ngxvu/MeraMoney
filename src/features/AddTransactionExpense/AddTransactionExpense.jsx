@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import SingleDayPicker from '../../components/SingleDayPicker/SingleDayPicker';
-import { FaCalendarAlt } from 'react-icons/fa';
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import './AddTransactionExpense.scss';
 

@@ -14,9 +14,6 @@ function Login({ onLogin }) {
     const handleLoginSuccess = (data) => {
         const { access_token, refresh_token } = data;
 
-        console.log('Access Token:', access_token); // Debugging
-        console.log('Refresh Token:', refresh_token); // Debugging
-
         localStorage.setItem("accessToken", access_token);
         localStorage.setItem("refreshToken", refresh_token);
 

@@ -1,4 +1,3 @@
-// src/features/CategoryPage/CategoryPage.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CategoryPage.scss';
