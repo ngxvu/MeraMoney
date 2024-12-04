@@ -1,32 +1,55 @@
 /* src/features/CategorySelect/CategorySelect.scss */
 .category-select-page {
     display: flex;
-    flex-direction: column;
     align-items: center;
     gap: 20px;
-    margin-top: 50px;
+    margin-top: 40px;
+}
+
+.category-select-page .category-list {
+    flex: 1;
+    border: none;
+    box-shadow: 0 0 25px 0 rgba(0, 123, 255, 0.3);
+    padding: 2rem;
+    border-radius: 20px;
+    background: #eeeeee;
 }
 
 .category-list {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
     gap: 20px;
+    width: 100%;
+    max-width: 800px;
 }
 
 .category-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .category-item img {
-    width: 50px;
-    height: 50px;
+    width: 100px;
+    height: 100px;
+}
+
+.category-item p {
+    width: 100px;
+    text-align: center;
 }
 
 .category-item button {
+    width: 100px;
     padding: 5px 10px;
-    font-size: 14px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.category-select-page .all-button {
+    width: 100px;
+    padding: 5px 10px;
+    font-size: 20px;
     cursor: pointer;
 }

@@ -1,11 +1,16 @@
 // src/features/CategorySelect/CategorySelect.jsx
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './CategorySelect.scss';
+import logo from "../../assets/images/finalcs50-meramoney.png";
+import all from "../../assets/images/meramoney.png";
+import Navbar from "../../components/Navbar/Navbar";
 
 function CategorySelect() {
     const [categories, setCategories] = useState([]);
+    const [categoryId, setCategoryId] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         const fetchCategories = async () => {
@@ -37,26 +42,42 @@ function CategorySelect() {
     }, [navigate]);
 
     const handleSelectCategory = (categoryId) => {
-        navigate('/transaction-history', { state: { selectedCategoryId: categoryId } });
+        setCategoryId(categoryId);
+        if (location.state && location.state.onSelectCategory) {
+            const onSelectCategory = new Function('categoryId', location.state.onSelectCategory);
+            onSelectCategory(categoryId);
+        }
+        navigate('/transaction-history', { state: { selectedCategoryId: categoryId, dateRange: location.state.dateRange, typeFilter: location.state.typeFilter } });
     };
 
     return (
-        <div className="category-select-page">
-            <button onClick={() => navigate('/transaction-history')}>Back</button>
-            <div className="category-list">
-                <div className="category-item">
-                    <p>All</p>
-                    <button onClick={() => handleSelectCategory(null)}>Select</button>
-                </div>
-                {categories.map(category => (
-                    <div key={category.id} className="category-item">
-                        <img src={category.icon_catalog_image_url} alt={category.name} />
-                        <p>{category.name}</p>
-                        <button onClick={() => handleSelectCategory(category.id)}>Select</button>
+        <>
+            <div className="banner-container">
+                <header className="banner">
+                    <div className="logo-container">
+                        <img src={logo} alt="Logo"/>
+                        <span className="logo-text">Meramoney</span>
                     </div>
-                ))}
+                </header>
             </div>
-        </div>
+            <div className="category-select-page">
+                <div className="category-list">
+                    <div className="category-item" onClick={() => handleSelectCategory('')}>
+                        <img src={all} alt="all"/>
+                        <span>All</span>
+                    </div>
+                    {categories.map(category => (
+                        <div key={category.id}
+                             className={`category-item ${categoryId === category.id ? 'selected' : ''}`}
+                             onClick={() => handleSelectCategory(category.id)}>
+                            <img src={category.icon_catalog_image_url} alt={category.name}/>
+                            <span>{category.name}</span>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+        </>
     );
 }
 

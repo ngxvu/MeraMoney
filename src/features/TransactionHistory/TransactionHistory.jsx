@@ -15,12 +15,21 @@ function TransactionHistory() {
     const [typeFilter, setTypeFilter] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('');
     const [categoryNames, setCategoryNames] = useState({});
+    const [paging, setPaging] = useState({ can_next: false, can_pre: false, page: 1, page_count: 1, total: 0 });
     const navigate = useNavigate();
     const location = useLocation();
 
     useEffect(() => {
-        if (location.state && location.state.selectedCategoryId !== undefined) {
-            setCategoryFilter(location.state.selectedCategoryId);
+        if (location.state) {
+            if (location.state.selectedCategoryId !== undefined) {
+                setCategoryFilter(location.state.selectedCategoryId);
+            }
+            if (location.state.dateRange) {
+                setDateRange(location.state.dateRange);
+            }
+            if (location.state.typeFilter) {
+                setTypeFilter(location.state.typeFilter);
+            }
         }
     }, [location.state]);
 
@@ -49,8 +58,9 @@ function TransactionHistory() {
             }
 
             const data = await response.json();
-            setTransactions(data);
-            fetchCategoryNames(data);
+            setTransactions(data.transaction_data || []);
+            setPaging(data.paging);
+            fetchCategoryNames(data.transaction_data || []);
         } catch (error) {
             console.error('Error fetching transactions:', error);
         }
@@ -91,7 +101,12 @@ function TransactionHistory() {
     const handlePlusClick = () => {
         navigate('/add-transactions');
     };
-    
+
+    const handleSelectCategory = (categoryId) => {
+        setCategoryFilter(categoryId);
+        navigate('/transaction-history', { state: { selectedCategoryId: categoryId, dateRange, typeFilter } });
+    };
+
     return (
         <>
             <div className="navbar-banner-container">
@@ -107,7 +122,7 @@ function TransactionHistory() {
                 <div className="main-content">
                     <div className="left-panel">
                         <div className="date-range-picker-container">
-                            <MyDatePicker onDateRangeChange={setDateRange}/>
+                            <MyDatePicker onDateRangeChange={setDateRange} initialDateRange={dateRange}/>
                         </div>
                         <div className="filters">
                             <h2>Filters</h2>
@@ -123,7 +138,7 @@ function TransactionHistory() {
                             >
                                 Expense
                             </button>
-                            <button onClick={() => navigate('/category-select')}>Category</button>
+                            <button onClick={() => navigate('/category-select', { state: { onSelectCategory: handleSelectCategory.toString(), dateRange, typeFilter } })}>Category</button>
                         </div>
                     </div>
                     <div className="right-panel">
@@ -138,34 +153,26 @@ function TransactionHistory() {
                                 </li>
                             </ul>
                             <ul>
-                                {transactions.map(transaction => (
+                                {Array.isArray(transactions) && transactions.map(transaction => (
                                     <li key={transaction.id}>
-                                        <div>
-                                            <strong>{transaction.type === 'income' ? 'Income' : 'Expense'}</strong>
-                                        </div>
-                                        <div>
-                                            <span>{transaction.amount}</span>
-                                        </div>
-                                        <div>
-                                            <span>{categoryNames[transaction.category_id]}</span>
-                                        </div>
-                                        <div>
-                                            <span>{formatDate(transaction.updated_at)}</span>
-                                        </div>
+                                        <div>{transaction.type}</div>
+                                        <div>{transaction.amount}</div>
+                                        <div>{categoryNames[transaction.category_id]}</div>
+                                        <div>{formatDate(transaction.created_at)}</div>
                                     </li>
                                 ))}
                             </ul>
                             {transactions.length > 0 && (
                                 <div className="pagination">
-                                    <button onClick={() => setPage(page > 1 ? page - 1 : 1)}>Prev</button>
-                                    <span>Page {page}</span>
-                                    <button onClick={() => setPage(page + 1)}>Next</button>
+                                    <button onClick={() => setPage(page > 1 ? page - 1 : 1)} disabled={!paging.can_pre}>Prev</button>
+                                    <span>Page {paging.page} of {paging.page_count}</span>
+                                    <button onClick={() => setPage(page + 1)} disabled={!paging.can_next}>Next</button>
                                 </div>
                             )}
                         </div>
-                            <button onClick={handlePlusClick} className="add-transaction-button">
-                                <FaPlus/>
-                            </button>
+                        <button onClick={handlePlusClick} className="add-transaction-button">
+                            <FaPlus/>
+                        </button>
                     </div>
                 </div>
             </div>

@@ -1,14 +1,15 @@
 // src/features/CategoryList/CategoryList.jsx
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CategoryList.scss';
 
-function CategoryList() {
-    const [categories, setCategories] = useState([]);
+function CategoryList({ onSelectCategory }) {
+    const [categoryList, setCategoryList] = useState([]);
+    const [categoryId, setCategoryId] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchCategories = async () => {
+        const fetchCategoryList = async () => {
             const accessToken = localStorage.getItem('accessToken');
             if (!accessToken) {
                 navigate('/login');
@@ -16,7 +17,7 @@ function CategoryList() {
             }
 
             try {
-                const response = await fetch('http://143.198.193.9:8989/category?page=1&page_size=15', {
+                const response = await fetch('http://143.198.193.9:8989/category?page=1&page_size=100', {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }
@@ -27,26 +28,31 @@ function CategoryList() {
                 }
 
                 const data = await response.json();
-                setCategories(data);
+                setCategoryList(data);
             } catch (error) {
-                console.error('There was an error fetching the categories!', error);
+                console.error('There was an error fetching the category list!', error);
             }
         };
 
-        fetchCategories();
+        fetchCategoryList();
     }, [navigate]);
 
     return (
-        <div className="category-list-page">
-            <button onClick={() => navigate('/category')}>Back</button>
-        <div className="category-list">
-            {categories.map(category => (
-                <div key={category.id} className="category-item">
-                    <img src={category.icon_catalog_image_url} alt={category.name} />
-                    <p>{category.name}</p>
-                </div>
-            ))}
-        </div>
+        <div className="list-category-container">
+            <h2>CATEGORIES</h2>
+            <div className="category-list">
+                {categoryList.map(category => (
+                    <div key={category.id}
+                         className={`category-item ${categoryId === category.id ? 'selected' : ''}`}
+                         onClick={() => {
+                             setCategoryId(category.id);
+                             onSelectCategory(category.id);
+                         }}>
+                        <img src={category.icon_catalog_image_url} alt={category.name}/>
+                        <span>{category.name}</span>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
