@@ -72,21 +72,15 @@
 
 
 .view-category-page-button .category-page-button {
-  margin-top: 20px ;
-  flex-direction: column;
-  gap: 15px;
-  justify-content :center;
-  font-weight: bold;
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #ccc;
-  border-radius: 20px;
-  box-sizing: border-box;
-  font-size: 14px;
+  padding: 10px 20px;
+  font-size: 16px;
   background-color: #ffffffbf;
   color: #007f804d;
   border: none;
+  border-radius: 20px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 

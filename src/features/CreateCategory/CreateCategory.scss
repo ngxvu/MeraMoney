@@ -13,6 +13,7 @@
     padding: 3rem;
     border-radius: 20px;
     background: #eeeeee;
+    align-items: center;
 }
 
 .create-category h2 {
@@ -32,7 +33,6 @@
 }
 
 .create-category form label {
-    margin-bottom: 20px;
     font-weight: bold;
 }
 
@@ -42,7 +42,7 @@
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .create-category-page .create-category form button {
@@ -60,6 +60,15 @@
 .create-category form button:hover {
     background-color: #eeeeee;
     color: #0fccce;
+}
+
+.create-category-page img.selected-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .create-category-page .selected-icon {
@@ -81,4 +90,20 @@
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+}
+.create-category-page .create-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ffffffbf;
+    color: #007f804d;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.create-category-page .create-button:hover {
+    background-color: #eeeeee;
+    color: #0fccce;
 }

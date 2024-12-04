@@ -60,10 +60,9 @@ function CategoryList({ onSelectCategory }) {
                     ))}
                 </div>
             </div>
-                <div className="view-category-page-button">
-                        <button onClick={() => navigate('/category')} className="category-page-button">Back To Category Page
-                        </button>
-                </div>
+            <div className="view-category-page-button">
+                <button onClick={() => navigate('/category')} className="category-page-button">Back</button>
+            </div>
                 <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
             </>
             );

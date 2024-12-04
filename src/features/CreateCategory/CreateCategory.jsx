@@ -1,4 +1,3 @@
-// src/features/CreateCategory/CreateCategory.jsx
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './CreateCategory.scss';
@@ -18,9 +17,52 @@ function CreateCategory() {
         const params = new URLSearchParams(location.search);
         const selectedIconId = params.get('icon_id');
         const selectedIconUrl = params.get('icon_url');
+        const savedName = params.get('name');
+        const savedDescription = params.get('description');
+        const savedType = params.get('type');
+
         if (selectedIconId) {
             setIconId(selectedIconId);
             setIconUrl(selectedIconUrl);
+        }
+        if (savedName) {
+            setName(savedName);
+        }
+        if (savedDescription) {
+            setDescription(savedDescription);
+        }
+        if (savedType) {
+            setType(savedType);
+        }
+    }, [location]);
+    
+    const handleSelectIcon = () => {
+        localStorage.setItem('name', name);
+        localStorage.setItem('description', description);
+        localStorage.setItem('type', type);
+        navigate(`/list-icon-catalog?name=${name}&description=${description}&type=${type}`);
+    };
+    
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        const selectedIconId = params.get('icon_id');
+        const selectedIconUrl = params.get('icon_url');
+        const savedName = params.get('name') || localStorage.getItem('name');
+        const savedDescription = params.get('description') || localStorage.getItem('description');
+        const savedType = params.get('type') || localStorage.getItem('type');
+        
+        if (selectedIconId) {
+            setIconId(selectedIconId);
+            setIconUrl(selectedIconUrl);
+        }
+        if (savedName) {
+            setName(savedName);
+        }
+        if (savedDescription) {
+            setDescription(savedDescription);
+        }
+        if (savedType) {
+            setType(savedType);
         }
     }, [location]);
 
@@ -53,7 +95,7 @@ function CreateCategory() {
                 throw new Error('Network response was not ok');
             }
 
-            navigate('/list-categories');
+            navigate('/view-categories');
         } catch (error) {
             console.error('There was an error creating the category!', error);
         }
@@ -89,19 +131,18 @@ function CreateCategory() {
                                 onChange={(e) => setDescription(e.target.value)}
                             />
                         </div>
-                            <select value={type} onChange={(e) => setType(e.target.value)}>
-                                <option value="income">Income</option>
-                                <option value="expenses">Expenses</option>
-                            </select>
-                        
-                            {iconUrl && <img src={iconUrl} alt="Selected Icon" className="selected-icon"/>}
-                            
-                            <button type="button" onClick={() => navigate('/list-icon-catalog')}>Select Icon</button>
-                            <button type="submit">Create</button>
+                        <select value={type} onChange={(e) => setType(e.target.value)}>
+                            <option value="income">Income</option>
+                            <option value="expenses">Expenses</option>
+                        </select>
+                        <button type="button" onClick={handleSelectIcon}>Select Icon</button>
+                        {iconUrl && <img src={iconUrl} alt="Selected Icon" className="selected-icon"/>}
+                        <button type="submit">Create</button>
                     </form>
                 </div>
-                <button onClick={() => navigate('/category')}>Back</button>
+                <button onClick={() => navigate('/category')} className="create-button">Back</button>
             </div>
+            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
         </>
     );
 }
