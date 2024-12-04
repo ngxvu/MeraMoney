@@ -2,7 +2,7 @@
 
 ![img.png](img.png)
 
-#### Video Demo: <URL HERE>
+#### Video Demo: https://youtu.be/lj4KUtW5Z6g
 #### Description:
 
 MeraMoney is a personal finance management web application that helps users track their income and expenses.
