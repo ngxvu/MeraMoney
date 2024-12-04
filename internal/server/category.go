@@ -79,7 +79,7 @@ func (s *Server) GetCategory(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var category domains.Category
-	if err := s.DB.Where("user_id = ?", userID).First(&category, id).Error; err != nil {
+	if err := s.DB.Where("user_id = ? AND id = ?", userID, id).First(&category, id).Error; err != nil {
 		http.Error(w, "Category not found", http.StatusNotFound)
 		return
 	}
@@ -157,7 +157,7 @@ func (s *Server) UpdateCategory(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var category domains.Category
-	if err := s.DB.Where("user_id = ?", userID).First(&category, id).Error; err != nil {
+	if err := s.DB.Where("user_id = ? AND id = ?", userID, id).First(&category, id).Error; err != nil {
 		http.Error(w, "Category not found", http.StatusNotFound)
 		return
 	}
@@ -205,7 +205,7 @@ func (s *Server) DeleteCategory(w http.ResponseWriter, r *http.Request) {
 
 	// Check if the category is used in transactions
 	var transactionCount int64
-	if err := s.DB.Model(&domains.Transaction{}).Where("category_id = ? AND user_id = ?", id, userID).Count(&transactionCount).Error; err != nil {
+	if err := s.DB.Model(&domains.Transaction{}).Where("id = ? AND user_id = ?", id, userID).Count(&transactionCount).Error; err != nil {
 		http.Error(w, "Failed to check category usage", http.StatusInternalServerError)
 		return
 	}

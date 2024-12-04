@@ -137,8 +137,46 @@ func (s *Server) GetAllTransactions(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Encode the transactions to JSON and send the response
-	json.NewEncoder(w).Encode(transactions)
+	// Get total count of transactions
+	var total int64
+	countQuery := s.DB.Model(&domains.Transaction{}).Where("user_id = ?", userID)
+	if transactionType != "" {
+		countQuery = countQuery.Where("type = ?", transactionType)
+	}
+	if start != "" && end != "" {
+		countQuery = countQuery.Where("created_at BETWEEN ? AND ?", start, end)
+	}
+	if categoryID != 0 {
+		countQuery = countQuery.Where("category_id = ?", categoryID)
+	}
+	if err := countQuery.Count(&total).Error; err != nil {
+		http.Error(w, "Failed to count transactions", http.StatusInternalServerError)
+		return
+	}
+
+	// Calculate paging information
+	pageCount := (total + int64(pageSize) - 1) / int64(pageSize)
+	canNext := page < int(pageCount)
+	canPre := page > 1
+
+	// Prepare the response
+	response := map[string]interface{}{
+		"paging": map[string]interface{}{
+			"total":      total,
+			"page":       page,
+			"page_count": pageCount,
+			"can_next":   canNext,
+			"can_pre":    canPre,
+		},
+		"transaction_data": transactions,
+	}
+
+	// Encode the response to JSON and send it
+	w.Header().Set("Content-Type", "application/json")
+	if err := json.NewEncoder(w).Encode(response); err != nil {
+		http.Error(w, "Failed to encode response", http.StatusInternalServerError)
+		return
+	}
 }
 
 // UpdateTransaction updates a transaction by ID
@@ -158,7 +196,7 @@ func (s *Server) UpdateTransaction(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var transaction domains.Transaction
-	if err := s.DB.Where("user_id = ?", userID).First(&transaction, id).Error; err != nil {
+	if err := s.DB.Where("user_id = ? AND id = ?", userID, id).First(&transaction).Error; err != nil {
 		http.Error(w, "Transaction not found", http.StatusNotFound)
 		return
 	}
