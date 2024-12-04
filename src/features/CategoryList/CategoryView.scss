@@ -1,0 +1,90 @@
+.view-category-container {
+  border: none;
+  box-shadow: 0 0 25px 0 rgba(0, 123, 255, 0.3);
+  padding: 2rem;
+  border-radius: 20px;
+  background: #eeeeee;
+}
+
+.view-category-container .view-category-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.view-category-container .category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.view-category-container .category-item img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.view-category-container .view-category-list::-webkit-scrollbar {
+  width: 12px;
+}
+
+.view-category-container .view-category-list::-webkit-scrollbar-thumb {
+  background-color: rgba(30, 70, 70, 0.2);
+  border-radius: 10px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+
+.view-category-container .view-category-list::-webkit-scrollbar-track {
+  background-color: rgba(241, 241, 241, 0.45);
+  border-radius: 10px;
+}
+
+.view-category-container .view-category-list::-webkit-scrollbar-track:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.view-category-container .view-category-list::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 144, 144, 0.43);
+}
+
+.view-category-container .category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.view-category-container .category-item:hover {
+  background-color: transparent;
+  color: #0fccce;
+}
+
+.view-category-container .category-item.selected {
+  background-color: rgba(0, 144, 144, 0.14);
+  color: #0fccce;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+
+
+.view-category-page-button .category-page-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ffffffbf;
+  color: #007f804d;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 15px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.view-category-page-button .category-page-button:hover {
+  background-color: #eeeeee;
+  color: #0fccce;
+}

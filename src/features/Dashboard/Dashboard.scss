@@ -1,0 +1,64 @@
+.dashboard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+
+.dashboard .left-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  margin-left: 2rem;
+}
+
+.dashboard .date-range-picker-container {
+  flex: 1;
+  margin-right: 2rem;
+  border: none;
+  box-shadow: 0 0 25px 0 rgba(0, 123, 255, 0.3);
+  padding: 1rem;
+  border-radius: 20px;
+  background: #eeeeee;
+}
+
+.dashboard .right-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  margin-right: 2rem;
+}
+
+.dashboard .summary {
+  flex: 2; /* Chia tỷ lệ chiều cao: phần summary chiếm 2 phần */
+  margin-bottom: 1rem;
+  border: none;
+  box-shadow: 0 0 20px 0 rgba(0, 123, 255, 0.3);
+  padding: 1rem;
+  border-radius: 20px;
+  background: #eeeeee;
+}
+
+.dashboard .add-transaction-button {
+  flex: 1;
+  cursor: pointer;
+  background-color: #ffffffbf;
+  color: #007f804d;
+  border: none;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+  width: 100%;
+  padding: 1rem;
+}
+
+
+.dashboard .add-transaction-button:hover {
+  background-color: #eeeeee;
+  color: #0fccce;
+}
