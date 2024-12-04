@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './IconCatalogList.scss';
+import logo from "../../assets/images/finalcs50-meramoney.png";
+import Navbar from "../../components/Navbar/Navbar";
 
 function IconCatalogList() {
     const [iconCatalog, setIconCatalog] = useState([]);
@@ -49,14 +51,24 @@ function IconCatalogList() {
     }, {});
 
     return (
-        <div className="icon-catalog-list">
-            {Object.keys(groupedIcons).map(iconType => (
-                <div key={iconType} className="icon-group">
-                    <h3>{iconType}</h3>
-                    <div className="icon-items">
-                        {groupedIcons[iconType].map(icon => (
-                            <div key={icon.id} className="icon-item">
-                                <img src={icon.image_url} alt={icon.icon_type} />
+        <>
+        <div className="navbar-banner-container">
+            <header className="navbar-banner">
+                <div className="navbar-logo-container">
+                    <img src={logo} alt="Logo"/>
+                    <span className="navbar-logo-text">Meramoney</span>
+                </div>
+                <Navbar/>
+            </header>
+        </div>
+    <div className="icon-catalog-list">
+        {Object.keys(groupedIcons).map(iconType => (
+            <div key={iconType} className="icon-group">
+                <h3>{iconType}</h3>
+                <div className="icon-items">
+                    {groupedIcons[iconType].map(icon => (
+                        <div key={icon.id} className="icon-item">
+                        <img src={icon.image_url} alt={icon.icon_type} />
                                 <button onClick={() => handleSelectIcon(icon.id, icon.image_url)}>Select</button>
                             </div>
                         ))}
@@ -64,6 +76,7 @@ function IconCatalogList() {
                 </div>
             ))}
         </div>
+        </>
     );
 }
 

@@ -8,9 +8,22 @@
 
 .view-category-container .view-category-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(120px, 1fr));
   max-height: 600px;
   overflow-y: auto;
+}
+
+.view-category-container .category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.view-category-container .category-item img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
 }
 
 .view-category-container .view-category-list::-webkit-scrollbar {

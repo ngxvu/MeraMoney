@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './CreateCategory.scss';
+import logo from "../../assets/images/finalcs50-meramoney.png";
+import Navbar from "../../components/Navbar/Navbar";
 
 function CreateCategory() {
     const [name, setName] = useState('');
@@ -58,44 +60,49 @@ function CreateCategory() {
     };
 
     return (
-        <div className="create-category-page">
-            <button onClick={() => navigate('/category')}>Back</button>
-        <div className="create-category">
-            <h2>Create Category</h2>
-            <form onSubmit={handleSubmit}>
-                <div>
-                    <label>Name:</label>
-                    <input
-                        type="text"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        required
-                    />
+        <>
+            <div className="navbar-banner-container">
+                <header className="navbar-banner">
+                    <div className="navbar-logo-container">
+                        <img src={logo} alt="Logo"/>
+                        <span className="navbar-logo-text">Meramoney</span>
+                    </div>
+                    <Navbar/>
+                </header>
+            </div>
+            <div className="create-category-page">
+                <div className="create-category">
+                    <h2>CREATE CATEGORY</h2>
+                    <form onSubmit={handleSubmit}>
+                        <div>
+                            <input
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div>
+                            <input
+                                type="text"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </div>
+                            <select value={type} onChange={(e) => setType(e.target.value)}>
+                                <option value="income">Income</option>
+                                <option value="expenses">Expenses</option>
+                            </select>
+                        
+                            {iconUrl && <img src={iconUrl} alt="Selected Icon" className="selected-icon"/>}
+                            
+                            <button type="button" onClick={() => navigate('/list-icon-catalog')}>Select Icon</button>
+                            <button type="submit">Create</button>
+                    </form>
                 </div>
-                <div>
-                    <label>Description:</label>
-                    <input
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </div>
-                <div>
-                    <label>Type:</label>
-                    <select value={type} onChange={(e) => setType(e.target.value)}>
-                        <option value="income">Income</option>
-                        <option value="expenses">Expenses</option>
-                    </select>
-                </div>
-                <div>
-                    <label>Icon:</label>
-                    {iconUrl && <img src={iconUrl} alt="Selected Icon" className="selected-icon" />}
-                    <button type="button" onClick={() => navigate('/list-icon-catalog')}>Select Icon</button>
-                </div>
-                <button type="submit">Create</button>
-            </form>
-        </div>
-        </div>
+                <button onClick={() => navigate('/category')}>Back</button>
+            </div>
+        </>
     );
 }
 

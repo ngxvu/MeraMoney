@@ -1,6 +1,18 @@
-// src/features/CreateCategory/CreateCategory.scss
+.create-category-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 50px;
+}
+
 .create-category {
-    padding: 20px;
+    flex: 1;
+    border: none;
+    box-shadow: 0 0 25px 0 rgba(0, 123, 255, 0.3);
+    padding: 3rem;
+    border-radius: 20px;
+    background: #eeeeee;
 }
 
 .create-category h2 {
@@ -20,7 +32,7 @@
 }
 
 .create-category form label {
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
@@ -29,32 +41,35 @@
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 20px;
+    margin-bottom: 20px;
 }
 
-.create-category form button {
+.create-category-page .create-category form button {
     padding: 10px 20px;
     font-size: 16px;
-    color: white;
-    background-color: #007bff;
+    background-color: #ffffffbf;
+    color: #007f804d;
     border: none;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
 }
 
 .create-category form button:hover {
-    background-color: #0056b3;
+    background-color: #eeeeee;
+    color: #0fccce;
 }
 
-.selected-icon {
-    width: 50px;
+.create-category-page .selected-icon {
+    width: 100%;
     height: 50px;
     object-fit: cover;
     margin-bottom: 10px;
 }
 
-/* src/features/CreateCategory/CreateCategory.scss */
-.create-category-page {
+.create-category-page .create-category-page {
     display: flex;
     flex-direction: column;
     align-items: center;

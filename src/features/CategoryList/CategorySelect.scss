@@ -1,9 +1,9 @@
-/* src/features/CategorySelect/CategorySelect.scss */
 .category-select-page {
     display: flex;
     align-items: center;
     gap: 20px;
     margin-top: 40px;
+    max-height: 800px;
 }
 
 .category-select-page .category-list {
@@ -15,39 +15,39 @@
     background: #eeeeee;
 }
 
-.category-list {
+.category-select-page .category-list {
     display: grid;
-    grid-template-columns: repeat(3, minmax(120px, 1fr));
+    grid-template-columns: repeat(4, minmax(120px, 1fr));
     gap: 20px;
     width: 100%;
     max-width: 800px;
 }
 
-.category-item {
+.category-select-page .category-item {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
 }
 
-.category-item img {
+.category-select-page .category-item img {
     width: 100px;
     height: 100px;
 }
 
-.category-item p {
+.category-select-page .category-item p {
     width: 100px;
     text-align: center;
 }
 
-.category-item button {
+.category-select-page .category-item button {
     width: 100px;
     padding: 5px 10px;
     font-size: 20px;
     cursor: pointer;
 }
 
-.category-select-page .all-button {
+.category-select-page .category-select-page .all-button {
     width: 100px;
     padding: 5px 10px;
     font-size: 20px;

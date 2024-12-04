@@ -1,6 +1,15 @@
 // src/features/IconCatalogList/IconCatalogList.scss
 .icon-catalog-list {
     padding: 20px;
+    flex: 2; /* Chia tỷ lệ chiều cao: phần summary chiếm 2 phần */
+    margin-bottom: 1rem;
+    border: none;
+    box-shadow: 0 0 20px 0 rgba(0, 123, 255, 0.3);
+    padding: 1rem;
+    border-radius: 20px;
+    background: #eeeeee;
+    max-height: 600px; /* Add this line to set the maximum width */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
 .icon-group {
@@ -37,13 +46,14 @@
 .icon-item button {
     padding: 5px 10px;
     font-size: 14px;
-    color: white;
-    background-color: #007bff;
+    background-color: #ffffffbf;
+    color: #007f804d;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .icon-item button:hover {
-    background-color: #0056b3;
+    background-color: #eeeeee;
+    color: #0fccce;
 }
