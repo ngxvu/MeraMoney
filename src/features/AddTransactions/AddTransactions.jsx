@@ -31,8 +31,7 @@ function AddTransactions() {
             <div className="add-transactions-container">
                 <div className="button-container">
                     <button onClick={() => handleButtonClick('Income')} className="transaction-button">Income</button>
-                    <button onClick={() => handleButtonClick('Expenses')} className="transaction-button">Expenses
-                    </button>
+                    <button onClick={() => handleButtonClick('Expenses')} className="transaction-button">Expenses</button>
                 </div>
             </div>
             <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>

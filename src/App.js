@@ -17,6 +17,7 @@ import AddTransactionExpense from './features/AddTransactionExpense/AddTransacti
 import TransactionHistory    from "./features/TransactionHistory/TransactionHistory";
 import CategoryPage from './features/CategoryPage/CategoryPage';
 import CategorySelect from './features/CategoryList/CategorySelect';
+import CategoryView from './features/CategoryList/CategoryView';
 
 function App() {
     const handleLogin = () => {
@@ -89,6 +90,11 @@ function App() {
                 <Route path="/category-select" element={
                     <ProtectedRoute>
                         <CategorySelect />
+                    </ProtectedRoute>
+                } />
+                <Route path={"/view-categories"} element={
+                    <ProtectedRoute>
+                        <CategoryView />
                     </ProtectedRoute>
                 } />
             </Routes>

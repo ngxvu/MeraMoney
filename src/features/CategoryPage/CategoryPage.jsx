@@ -10,22 +10,24 @@ function CategoryPage() {
 
     return (
         <>
-        <div className="navbar-banner-container">
-            <header className="navbar-banner">
-                <div className="navbar-logo-container">
-                    <img src={logo} alt="Logo"/>
-                    <span className="navbar-logo-text">Meramoney</span>
-                </div>
-                <Navbar/>
-            </header>
-        </div>
-    <div className="category-page">
-        <button onClick={() => navigate('/list-categories')}>List Categories</button>
-        <button onClick={() => navigate('/create-category')}>Create Category</button>
-    </div>
+            <div className="navbar-banner-container">
+                <header className="navbar-banner">
+                    <div className="navbar-logo-container">
+                        <img src={logo} alt="Logo"/>
+                        <span className="navbar-logo-text">Meramoney</span>
+                    </div>
+                    <Navbar/>
+                </header>
+            </div>
+            <div className="category-page-container">
+                <div className="category-page-button">
+                <button onClick={() => navigate('/view-categories')} className="list-category-button">View Categories</button>
+                <button onClick={() => navigate('/create-category')} className="list-create-button">Create Category</button>
+            </div>
+            </div>
             <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
         </>
-);
+    );
 }
 
 export default CategoryPage;
