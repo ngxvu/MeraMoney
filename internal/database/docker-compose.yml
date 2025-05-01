@@ -1,7 +1,8 @@
-version: '3.8'
-
+# to run this file, you need to have docker and docker-compose installed
+# and run the following command in the terminal:
+# docker compose -f ./docker-compose.yml --env-file ./../../.env up -d
 services:
-  psql:
+  postgres:
     image: postgres:17-alpine
     container_name: meramoney
     environment:
