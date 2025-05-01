@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "./AddTransactions.scss";
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import Navbar from "../../components/Navbar/Navbar";
+import config from "../../config";
+import Footer from "../Footer/Footer";
 
 function AddTransactions() {
     const navigate = useNavigate();
@@ -34,7 +36,7 @@ function AddTransactions() {
                     <button onClick={() => handleButtonClick('Expenses')} className="transaction-button">Expenses</button>
                 </div>
             </div>
-            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+            < Footer />
         </>
     );
 }

@@ -4,6 +4,8 @@ import './AddTransactionIncome.scss';
 import SingleDayPicker from '../../components/SingleDayPicker/SingleDayPicker';
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import Navbar from "../../components/Navbar/Navbar";
+import config from "../../config";
+import Footer from "../Footer/Footer";
 
 function AddTransactionIncome() {
     const [amount, setAmount] = useState('');
@@ -12,7 +14,7 @@ function AddTransactionIncome() {
     const [createAt, setCreateAt] = useState(null);
     const [categoryList, setCategoryList] = useState([]);
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         const fetchCategoryList = async () => {
             const accessToken = localStorage.getItem('accessToken');
@@ -20,25 +22,37 @@ function AddTransactionIncome() {
                 navigate('/login');
                 return;
             }
-
+            
+            let allCategories = [];
+            let currentPage = 1;
+            const pageSize = 10;
+            let hasMoreData = true;
+            
             try {
-                const response = await fetch('http://143.198.193.9:8989/category?page=1&page_size=100', {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
+                while (hasMoreData) {
+                    const response = await fetch(
+                        `${config.apiBaseUrl}:${config.apiPort}${config.endpoints.category}?page=${currentPage}&page_size=${pageSize}`, {
+                            headers: {
+                                'Authorization': `Bearer ${accessToken}`
+                            }
+                        });
+                    
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    
+                    const data = await response.json();
+                    allCategories = [...allCategories, ...data];
+                    hasMoreData = data.length === pageSize;
+                    currentPage++;
                 }
-
-                const data = await response.json();
-                setCategoryList(data);
+                
+                setCategoryList(allCategories);
             } catch (error) {
                 console.error('There was an error fetching the category list!', error);
             }
         };
-
+        
         fetchCategoryList();
     }, [navigate]);
 
@@ -59,7 +73,7 @@ function AddTransactionIncome() {
         };
 
         try {
-            const response = await fetch('http://143.198.193.9:8989/transaction', {
+            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.transaction}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -129,7 +143,7 @@ function AddTransactionIncome() {
                     </div>
                 </div>
             </div>
-            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+            < Footer />
         </>
     );
 }

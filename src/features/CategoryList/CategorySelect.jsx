@@ -4,40 +4,54 @@ import './CategorySelect.scss';
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import all from "../../assets/images/meramoney.png";
 import Navbar from "../../components/Navbar/Navbar";
+import config from "../../config";
+import Footer from "../Footer/Footer";
 
 function CategorySelect() {
-    const [categories, setCategories] = useState([]);
+    const [categories,setCategoryList] = useState([]);
     const [categoryId, setCategoryId] = useState('');
     const navigate = useNavigate();
     const location = useLocation();
-
+    
     useEffect(() => {
-        const fetchCategories = async () => {
+        const fetchCategoryList = async () => {
             const accessToken = localStorage.getItem('accessToken');
             if (!accessToken) {
                 navigate('/login');
                 return;
             }
-
+            
+            let allCategories = [];
+            let currentPage = 1;
+            const pageSize = 10;
+            let hasMoreData = true;
+            
             try {
-                const response = await fetch('http://143.198.193.9:8989/category?page=1&page_size=15', {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
+                while (hasMoreData) {
+                    const response = await fetch(
+                        `${config.apiBaseUrl}:${config.apiPort}${config.endpoints.category}?page=${currentPage}&page_size=${pageSize}`, {
+                            headers: {
+                                'Authorization': `Bearer ${accessToken}`
+                            }
+                        });
+                    
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    
+                    const data = await response.json();
+                    allCategories = [...allCategories, ...data];
+                    hasMoreData = data.length === pageSize;
+                    currentPage++;
                 }
-
-                const data = await response.json();
-                setCategories(data);
+                
+                setCategoryList(allCategories);
             } catch (error) {
-                console.error('There was an error fetching the categories!', error);
+                console.error('There was an error fetching the category list!', error);
             }
         };
-
-        fetchCategories();
+        
+        fetchCategoryList();
     }, [navigate]);
 
     const handleSelectCategory = (categoryId) => {
@@ -75,7 +89,7 @@ function CategorySelect() {
                     ))}
                 </div>
             </div>
-            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+            < Footer />
         </>
     );
 }

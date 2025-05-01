@@ -3,6 +3,8 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './CreateCategory.scss';
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import Navbar from "../../components/Navbar/Navbar";
+import config from "../../config";
+import Footer from "../Footer/Footer";
 
 function CreateCategory() {
     const [name, setName] = useState('');
@@ -82,7 +84,7 @@ function CreateCategory() {
         };
 
         try {
-            const response = await fetch('http://143.198.193.9:8989/category', {
+            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.category}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -144,7 +146,7 @@ function CreateCategory() {
                 </div>
                 <button onClick={() => navigate('/category')} className="create-button">Back</button>
             </div>
-            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+            < Footer />
         </>
     );
 }
