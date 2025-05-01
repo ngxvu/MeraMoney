@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import config from "../../config";
 
 function UpdateProfile() {
     const [userName, setUserName] = useState('');
@@ -19,7 +20,7 @@ function UpdateProfile() {
         }
 
         try {
-            const response = await fetch('http://143.198.193.9:8989/profile', {
+            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}/profile`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

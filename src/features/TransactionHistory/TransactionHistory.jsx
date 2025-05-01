@@ -5,6 +5,8 @@ import logo from "../../assets/images/finalcs50-meramoney.png";
 import Navbar from "../../components/Navbar/Navbar";
 import { MyDatePicker } from "../../components/DayPicker/DayPicker";
 import { FaPlus } from "react-icons/fa";
+import config from "../../config";
+import Footer from "../Footer/Footer";
 
 function TransactionHistory() {
     const [dateRange, setDateRange] = useState({ from: undefined, to: undefined });
@@ -46,7 +48,7 @@ function TransactionHistory() {
         const category = categoryFilter ? `&search=${categoryFilter}` : '';
 
         try {
-            const response = await fetch(`http://143.198.193.9:8989/transaction?page=${page}&pageSize=${pageSize}&start=${start}&end=${end}${type}${category}`, {
+            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}/transaction?page=${page}&pageSize=${pageSize}&start=${start}&end=${end}${type}${category}`, {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`
                 }
@@ -72,7 +74,7 @@ function TransactionHistory() {
 
         for (const id of categoryIds) {
             try {
-                const response = await fetch(`http://143.198.193.9:8989/category/${id}`, {
+                const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}/category/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }
@@ -175,7 +177,7 @@ function TransactionHistory() {
                     </div>
                 </div>
             </div>
-            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+            < Footer />
         </>
     );
 }

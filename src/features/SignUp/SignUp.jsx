@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../../features/SignUp/SignUp.scss";
 import logo from "../../assets/images/finalcs50-meramoney.png";
+import config from "../../config";
 
 function SignUp({ onSignUp }) {
   const [username, setUsername] = useState("");
@@ -23,7 +24,7 @@ function SignUp({ onSignUp }) {
     }
 
     try {
-      const response = await fetch("http://143.198.193.9:8989/sign-up", {
+      const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}/sign-up`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import config from "../../config";
 
 function Profile() {
     const [profile, setProfile] = useState(null);
@@ -13,7 +14,7 @@ function Profile() {
             return;
         }
 
-        fetch('http://143.198.193.9:8989/profile', {
+        fetch(`${config.apiBaseUrl}:${config.apiPort}/profile`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${accessToken}`

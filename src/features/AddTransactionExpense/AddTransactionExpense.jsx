@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import SingleDayPicker from '../../components/SingleDayPicker/SingleDayPicker';
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import './AddTransactionExpense.scss';
+import config from "../../config";
+import Footer from "../Footer/Footer";
 
 const AddTransactionExpense = () => {
     const [amount, setAmount] = useState('');
@@ -11,9 +13,8 @@ const AddTransactionExpense = () => {
     const [categoryId, setCategoryId] = useState(null);
     const [categoryList, setCategoryList] = useState([]);
     const [createAt, setCreateAt] = useState(new Date());
-    const [showDatePicker, setShowDatePicker] = useState(false);
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         const fetchCategoryList = async () => {
             const accessToken = localStorage.getItem('accessToken');
@@ -21,28 +22,39 @@ const AddTransactionExpense = () => {
                 navigate('/login');
                 return;
             }
-
+            
+            let allCategories = [];
+            let currentPage = 1;
+            const pageSize = 10;
+            let hasMoreData = true;
+            
             try {
-                const response = await fetch('http://143.198.193.9:8989/category?page=1&page_size=100', {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
+                while (hasMoreData) {
+                    const response = await fetch(
+                        `${config.apiBaseUrl}:${config.apiPort}${config.endpoints.category}?page=${currentPage}&page_size=${pageSize}`, {
+                            headers: {
+                                'Authorization': `Bearer ${accessToken}`
+                            }
+                        });
+                    
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    
+                    const data = await response.json();
+                    allCategories = [...allCategories, ...data];
+                    hasMoreData = data.length === pageSize;
+                    currentPage++;
                 }
-
-                const data = await response.json();
-                setCategoryList(data);
+                
+                setCategoryList(allCategories);
             } catch (error) {
                 console.error('There was an error fetching the category list!', error);
             }
         };
-
+        
         fetchCategoryList();
     }, [navigate]);
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         const accessToken = localStorage.getItem('accessToken');
@@ -50,7 +62,7 @@ const AddTransactionExpense = () => {
             navigate('/login');
             return;
         }
-
+        
         const transactionData = {
             create_at: createAt,
             category_id: parseInt(categoryId, 10),
@@ -58,9 +70,9 @@ const AddTransactionExpense = () => {
             description,
             type: 'expense'
         };
-
+        
         try {
-            const response = await fetch('http://143.198.193.9:8989/transaction', {
+            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.transaction}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -68,11 +80,11 @@ const AddTransactionExpense = () => {
                 },
                 body: JSON.stringify(transactionData)
             });
-
+            
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
-
+            
             navigate('/dashboard');
         } catch (error) {
             console.error('There was an error creating the transaction!', error);
@@ -130,7 +142,7 @@ const AddTransactionExpense = () => {
                     </div>
                 </div>
             </div>
-            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+            < Footer />
         </>
     );
 }

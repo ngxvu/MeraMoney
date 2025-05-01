@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './CategoryPage.scss';
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import Navbar from "../../components/Navbar/Navbar";
+import Footer from "../Footer/Footer";
 
 function CategoryPage() {
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ function CategoryPage() {
                 <button onClick={() => navigate('/create-category')} className="list-create-button">Create Category</button>
             </div>
             </div>
-            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+            < Footer />
         </>
     );
 }

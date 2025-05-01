@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './IconCatalogList.scss';
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import Navbar from "../../components/Navbar/Navbar";
+import config from "../../config";
 
 function IconCatalogList() {
     const [iconCatalog, setIconCatalog] = useState([]);
@@ -17,7 +18,7 @@ function IconCatalogList() {
             }
 
             try {
-                const response = await fetch('http://143.198.193.9:8989/list-icon-catalog?page=1&page_size=1000', {
+                const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.listIconCatalog}?page=1&page_size=1000`, {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }

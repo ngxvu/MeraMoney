@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './CategoryList.scss';
+import config from "../../config";
 
 function CategoryList({ onSelectCategory }) {
     const [categoryList, setCategoryList] = useState([]);
     const [categoryId, setCategoryId] = useState('');
     const navigate = useNavigate();
-
+    
     useEffect(() => {
         const fetchCategoryList = async () => {
             const accessToken = localStorage.getItem('accessToken');
@@ -14,25 +15,37 @@ function CategoryList({ onSelectCategory }) {
                 navigate('/login');
                 return;
             }
-
+            
+            let allCategories = [];
+            let currentPage = 1;
+            const pageSize = 10;
+            let hasMoreData = true;
+            
             try {
-                const response = await fetch('http://143.198.193.9:8989/category?page=1&page_size=100', {
-                    headers: {
-                        'Authorization': `Bearer ${accessToken}`
+                while (hasMoreData) {
+                    const response = await fetch(
+                        `${config.apiBaseUrl}:${config.apiPort}${config.endpoints.category}?page=${currentPage}&page_size=${pageSize}`, {
+                            headers: {
+                                'Authorization': `Bearer ${accessToken}`
+                            }
+                        });
+                    
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
                     }
-                });
-
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                    
+                    const data = await response.json();
+                    allCategories = [...allCategories, ...data];
+                    hasMoreData = data.length === pageSize;
+                    currentPage++;
                 }
-
-                const data = await response.json();
-                setCategoryList(data);
+                
+                setCategoryList(allCategories);
             } catch (error) {
                 console.error('There was an error fetching the category list!', error);
             }
         };
-
+        
         fetchCategoryList();
     }, [navigate]);
 

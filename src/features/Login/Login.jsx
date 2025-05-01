@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import "../../features/Login/Login.scss";
 import logo from "../../assets/images/finalcs50-meramoney.png";
+import config from "../../config.js";
+import Footer from "../Footer/Footer";
 
 function Login({ onLogin }) {
     const [username, setUsername] = useState("");
@@ -30,7 +32,7 @@ function Login({ onLogin }) {
         setSuccess("");
 
         try {
-            const response = await fetch("http://143.198.193.9:8989/login", {
+            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.login}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -92,7 +94,7 @@ function Login({ onLogin }) {
                     </div>
                 </form>
             </div>
-            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+            < Footer />
         </>
     );
 }

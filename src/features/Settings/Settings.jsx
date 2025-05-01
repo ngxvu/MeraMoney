@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import logo from "../../assets/images/finalcs50-meramoney.png";
 import './Settings.scss';
 import Navbar from "../../components/Navbar/Navbar";
+import config from "../../config";
+import Footer from "../Footer/Footer";
 
 function Settings() {
     const [profile, setProfile] = useState(null);
@@ -20,7 +22,7 @@ function Settings() {
         }
 
         try {
-            const response = await fetch('http://143.198.193.9:8989/profile', {
+            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}/profile`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${accessToken}`
@@ -55,7 +57,7 @@ function Settings() {
         }
 
         try {
-            const response = await fetch('http://143.198.193.9:8989/profile', {
+            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}/profile`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -117,7 +119,7 @@ function Settings() {
                     )}
                 </div>
             </div>
-            <footer>Cs50FinalMeramoney - by Nguyen Xuan Vu</footer>
+            < Footer />
         </>
     );
 }
