@@ -1,7 +1,4 @@
-[Meramoney](https://cs50-final-meramoney.vercel.app)
-
-# Project Meramoney
-
+# [Meramoney](https://meramoney.vercel.app)
 ![img.png](img.png)
 
 #### Description:
