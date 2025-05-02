@@ -48,7 +48,7 @@ function TransactionHistory() {
         const category = categoryFilter ? `&search=${categoryFilter}` : '';
 
         try {
-            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}/transaction?page=${page}&pageSize=${pageSize}&start=${start}&end=${end}${type}${category}`, {
+            const response = await fetch(`${config.apiBaseUrl}${config.endpoints.transaction}?page=${page}&pageSize=${pageSize}&start=${start}&end=${end}${type}${category}`, {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`
                 }
@@ -74,7 +74,7 @@ function TransactionHistory() {
 
         for (const id of categoryIds) {
             try {
-                const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}/category/${id}`, {
+                const response = await fetch(`${config.apiBaseUrl}${config.endpoints.category}/${id}`, {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }

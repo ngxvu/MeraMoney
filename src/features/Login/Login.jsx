@@ -32,7 +32,7 @@ function Login({ onLogin }) {
         setSuccess("");
 
         try {
-            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.login}`, {
+            const response = await fetch(`${config.apiBaseUrl}${config.endpoints.login}`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

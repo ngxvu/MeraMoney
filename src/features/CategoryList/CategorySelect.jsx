@@ -29,7 +29,7 @@ function CategorySelect() {
             try {
                 while (hasMoreData) {
                     const response = await fetch(
-                        `${config.apiBaseUrl}:${config.apiPort}${config.endpoints.category}?page=${currentPage}&page_size=${pageSize}`, {
+                        `${config.apiBaseUrl}${config.endpoints.category}?page=${currentPage}&page_size=${pageSize}`, {
                             headers: {
                                 'Authorization': `Bearer ${accessToken}`
                             }

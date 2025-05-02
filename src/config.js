@@ -1,9 +1,9 @@
 const config = {
     apiBaseUrl: "https://meramoney.space",
-    apiPort: 8080,
     endpoints: {
         login: "/login",
         signup: "/signup",
+        profile: "/profile",
         dashboard: "/dashboard",
         category: "/category",
         transaction: "/transaction",

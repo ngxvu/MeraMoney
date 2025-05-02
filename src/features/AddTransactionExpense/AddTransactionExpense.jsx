@@ -31,7 +31,7 @@ const AddTransactionExpense = () => {
             try {
                 while (hasMoreData) {
                     const response = await fetch(
-                        `${config.apiBaseUrl}:${config.apiPort}${config.endpoints.category}?page=${currentPage}&page_size=${pageSize}`, {
+                        `${config.apiBaseUrl}${config.endpoints.category}?page=${currentPage}&page_size=${pageSize}`, {
                             headers: {
                                 'Authorization': `Bearer ${accessToken}`
                             }
@@ -72,7 +72,7 @@ const AddTransactionExpense = () => {
         };
         
         try {
-            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.transaction}`, {
+            const response = await fetch(`${config.apiBaseUrl}${config.endpoints.transaction}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

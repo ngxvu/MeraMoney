@@ -18,7 +18,7 @@ function IconCatalogList() {
             }
 
             try {
-                const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.listIconCatalog}?page=1&page_size=1000`, {
+                const response = await fetch(`${config.apiBaseUrl}${config.endpoints.listIconCatalog}?page=1&page_size=1000`, {
                     headers: {
                         'Authorization': `Bearer ${accessToken}`
                     }

@@ -20,7 +20,7 @@ function UpdateProfile() {
         }
 
         try {
-            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}/profile`, {
+            const response = await fetch(`${config.apiBaseUrl}${config.endpoints.profile}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

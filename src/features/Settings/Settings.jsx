@@ -22,7 +22,7 @@ function Settings() {
         }
 
         try {
-            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}/profile`, {
+            const response = await fetch(`${config.apiBaseUrl}${config.endpoints.profile}`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${accessToken}`
@@ -57,7 +57,7 @@ function Settings() {
         }
 
         try {
-            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}/profile`, {
+            const response = await fetch(`${config.apiBaseUrl}${config.endpoints.profile}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',

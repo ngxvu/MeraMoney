@@ -14,7 +14,7 @@ function Profile() {
             return;
         }
 
-        fetch(`${config.apiBaseUrl}:${config.apiPort}/profile`, {
+        fetch(`${config.apiBaseUrl}${config.endpoints.profile}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${accessToken}`

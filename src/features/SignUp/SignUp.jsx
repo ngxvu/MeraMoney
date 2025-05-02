@@ -25,7 +25,7 @@ function SignUp({ onSignUp }) {
     }
 
     try {
-      const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.signup}`, {
+      const response = await fetch(`${config.apiBaseUrl}${config.endpoints.signup}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

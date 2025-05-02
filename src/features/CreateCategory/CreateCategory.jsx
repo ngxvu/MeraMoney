@@ -84,7 +84,7 @@ function CreateCategory() {
         };
 
         try {
-            const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.category}`, {
+            const response = await fetch(`${config.apiBaseUrl}${config.endpoints.category}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

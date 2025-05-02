@@ -23,7 +23,7 @@ function Dashboard() {
                 const accessToken = localStorage.getItem('accessToken');
                 
                 try {
-                    const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.balance}?start=${start}&end=${end}`, {
+                    const response = await fetch(`${config.apiBaseUrl}${config.endpoints.balance}?start=${start}&end=${end}`, {
                         headers: {
                             'Authorization': `Bearer ${accessToken}`
                         }
@@ -46,7 +46,7 @@ function Dashboard() {
                 const accessToken = localStorage.getItem('accessToken');
                 
                 try {
-                    const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.totalIncome}?start=${start}&end=${end}`, {
+                    const response = await fetch(`${config.apiBaseUrl}${config.endpoints.totalIncome}?start=${start}&end=${end}`, {
                         headers: {
                             'Authorization': `Bearer ${accessToken}`
                         }
@@ -69,7 +69,7 @@ function Dashboard() {
                 const accessToken = localStorage.getItem('accessToken');
                 
                 try {
-                    const response = await fetch(`${config.apiBaseUrl}:${config.apiPort}${config.endpoints.totalExpense}?start=${start}&end=${end}`, {
+                    const response = await fetch(`${config.apiBaseUrl}${config.endpoints.totalExpense}?start=${start}&end=${end}`, {
                         headers: {
                             'Authorization': `Bearer ${accessToken}`
                         }
