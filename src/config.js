@@ -1,5 +1,5 @@
 const config = {
-    apiBaseUrl: "http://103.245.236.213",
+    apiBaseUrl: "https://meramoney.space",
     apiPort: 8080,
     endpoints: {
         login: "/login",
