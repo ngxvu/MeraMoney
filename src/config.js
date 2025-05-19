@@ -2,7 +2,7 @@ const config = {
     apiBaseUrl: "https://meramoney.space",
     endpoints: {
         login: "/login",
-        signup: "/signup",
+        signup: "/sign-up",
         profile: "/profile",
         dashboard: "/dashboard",
         category: "/category",
@@ -17,6 +17,7 @@ const config = {
         totalIncome: "/total-income",
         totalExpense: "/total-expense",
     },
+    meramoneyTelegramApiToken: "7781424874:AAHL2l5QNG4pyNY_SIrV-DBHnoTTqt_DTB4",
 };
 
 export default config;
