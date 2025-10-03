@@ -83,9 +83,12 @@ func startServer(r *mux.Router) {
 	corsMethods := handlers.AllowedMethods([]string{"GET", "POST", "PUT", "DELETE", "OPTIONS"})
 
 	httpServer := server.NewServer(handlers.CORS(corsOptions, corsHeaders, corsMethods)(r))
-	httpServer.Addr = ":8080"
+	httpServer.Addr = os.Getenv("APP_PORT")
+	if httpServer.Addr == "" {
+		httpServer.Addr = ":8080"
+	}
 
-	log.Println("Server started on port 8080")
+	log.Println(fmt.Sprintf("Server is running on %s", httpServer.Addr))
 	err := httpServer.ListenAndServe()
 	if err != nil {
 		panic(fmt.Sprintf("cannot start server: %s", err))
